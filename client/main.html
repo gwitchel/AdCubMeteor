@@ -1,0 +1,75 @@
+<template name="main">
+{{>header}}
+<div class="container">
+{{> yield}}
+
+{{>footer}}
+</div>
+</template>
+
+<template name = "header">
+  <img src ="img/adcub_logo.jpg" width="150px" height="100px" class="pull-left">
+  
+  <div class="pull-right " style="padding-right: 200px; padding-top: 80px;" >
+    {{> loginButtons}}
+  </div>
+  <div style="padding-top: 70px;">
+  {{#if currentUser}}
+    {{>navbarLoggedIn}}
+  {{else}}
+   {{>navbarNotLoggedIn}}
+  {{/if}}
+  </div>
+
+</template>
+
+<template name = "navbarLoggedIn">
+
+  <ul class="nav nav-tabs">
+  <li><a href="{{pathFor route='home'}}">Home </a></li>
+  <li><a href="{{pathFor route='createAd'}}">Create Ad </a> </li>   
+  <li> <a href="{{pathFor route='reviewAdRequests'}}">Review Ad Requests </a></li>
+  <li><a href="{{pathFor route='updateBilling'}}">Update Billing </a></li> 
+  </ul>
+</template>
+<template name = "navbarNotLoggedIn">
+  <ul class="nav nav-tabs">
+  <li><a href="{{pathFor route='home'}}">Home</a> </li>
+  <li><a href="{{pathFor route='aboutUs'}}">About Us</a> </li>
+  <li><a href="{{pathFor route='howItWorks'}}">How It Works</a></li>
+  <li> <a href="{{pathFor route='getStarted'}}">Get started placing an ad request </a></li>
+  </ul>
+</template>
+
+<template name = "reviewAdRequests">  
+  <h1>Review ad requests you've submitted</h1>
+</template>
+<template name = "home">
+  <h1>HOME</h1>
+</template>
+<template name = "aboutUs">
+  <h1>About us...</h1>
+</template>
+<template name = "footer">
+
+  <p style="padding-top:100px;"> adCub corp. april 2017 </p> 
+</template>
+<template name = "howItWorks">
+    <h1>How it works</h1>
+</template>
+<template name = "getStarted">
+    <h1>Get started</h1>
+</template>
+
+
+
+
+
+
+
+
+
+<template name="hello">
+  <button>Click Me</button>
+  <p>You've pressed the button {{counter}} times.</p>
+</template>
