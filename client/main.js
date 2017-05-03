@@ -24,7 +24,9 @@ Router.configure({
   name: 'main', 
   layoutTemplate: 'main'
 });
-
+Router.route('/home',{
+  name: 'home'
+})
 Router.route('/createAd',{
   name: 'createAd'
 });
@@ -46,8 +48,9 @@ Router.route('/getStarted',{
 Router.route('/createAd/viewAdResults',{
   name:"viewAdResults"
 })
-Router.route('/createAd/viewAdResults/editRequests',{
-  name:"editRequests"
+Router.route('/createAd/viewAdResults/uploadImage',{
+  name:"uploadImage"
 })
+
 
 

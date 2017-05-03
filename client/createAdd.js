@@ -34,5 +34,12 @@ Template.CreateAd.events({
             createdBy: currUser,
             creationDate: new Date() 
         });
+        // console.log(allGrades)
+        // console.log(highSchool)
+        // console.log(middleSchool)
+        // console.log(lowerSchool)      
+        // console.log(allowAtypical.value)
+        // console.log(lowerLimit)
+        // console.log(upperLimit)
     }
 });
