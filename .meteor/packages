@@ -25,3 +25,5 @@ accounts-password
 accounts-ui
 twbs:bootstrap
 ephemer:reactive-datatables
+tomi:upload-server
+tomi:upload-jquery
