@@ -45,6 +45,9 @@ Router.route('/howItWorks',{
 Router.route('/getStarted',{
   name:"getStarted"
 })
+Router.route('/studentMain',{
+  name:"studentMain"
+})
 Router.route('/createAd/viewAdResults',{
   name:"viewAdResults"
 })
