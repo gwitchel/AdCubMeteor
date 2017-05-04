@@ -4,7 +4,6 @@
         {{>DisplayAdsTemplate}}
 </template>
 <template name = 'DisplayAdsTemplate' >
-        {{#each displayAds}}
-            {{_id}} :    {{creationDate}}<br>
-        {{/each}}
+        <h2>My Ads</h2>
+        {{> ReactiveDatatable tableData=reactiveDataFunction options=optionsObject }}
 </template>
