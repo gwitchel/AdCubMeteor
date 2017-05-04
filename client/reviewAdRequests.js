@@ -3,19 +3,6 @@ import { ReactiveVar } from 'meteor/reactive-var';
 
 import './reviewAdRequests.html';
 
-Template.reviewAdRequests.events({
-    'click .foo': function(){
-         var requests = [];
-         var foo = Ads.find().fetch(); 
-         for(var i =0; i < foo.length; i++){
-            if(foo[i].createdBy === Meteor.userId()){
-                requests.push(foo[i])
-            }
-         } 
-    },
-});
-
-
 dataTableData = function () {
     var x=  Ads.find({createdBy : Meteor.userId() }).fetch(); // or .map()
     return x;
@@ -35,7 +22,7 @@ var optionsObject = {
     data: 'regular',
     className: 'nameColumn'
     }],
-    // ... see jquery.dataTables docs for more
+    // ... see jquery.dataTables docs for more at https://datatables.net/
 }
 
 

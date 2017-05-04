@@ -1,0 +1,12 @@
+<template name="studentMain">
+    This is the main page for schools
+    {{>seeAdsTemplate}}
+</template>
+<template name="seeAdsButton">
+    <button id="seeAdsButton">See advertising reuests</button>
+</template>
+<template name="displayAdsTemplate">
+    {{#each displayAds}}
+            {{_id}} :    {{creationDate}}<br>
+        {{/each}}
+</template>
