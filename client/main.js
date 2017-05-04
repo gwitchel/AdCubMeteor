@@ -48,10 +48,10 @@ Router.route('/getStarted',{
 Router.route('/studentMain',{
   name:"studentMain"
 })
-Router.route('/createAd/viewAdResults',{
+Router.route('/viewAdResults',{
   name:"viewAdResults"
 })
-Router.route('/createAd/viewAdResults/uploadImage',{
+Router.route('/uploadImage',{
   name:"uploadImage"
 })
 
