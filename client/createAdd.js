@@ -21,25 +21,16 @@ Template.CreateAd.events({
         var currUser = Meteor.userId();
         //inserting ad properties to database
          Ads.insert({
-            allSchools: allSchools,
-            regular: regular,
-            other: other,
-            allGrades: allGrades,
-            highSchool: highSchool,
-            middleSchool: middleSchool,
-            lowerSchool: lowerSchool,
-            allowAtypical: allowAtypical,
-            lowerLimit: lowerLimit, 
-            upperLimit: upperLimit,
+            //date 
+            //name 
+            //target schools 
+            //time frame
+            // amount 
+            // location / type 
+            // size 
+            // image
             createdBy: currUser,
             creationDate: new Date() 
-        });
-        // console.log(allGrades)
-        // console.log(highSchool)
-        // console.log(middleSchool)
-        // console.log(lowerSchool)      
-        // console.log(allowAtypical.value)
-        // console.log(lowerLimit)
-        // console.log(upperLimit)
+        }
     }
 });

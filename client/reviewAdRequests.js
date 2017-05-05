@@ -9,16 +9,19 @@ dataTableData = function () {
 };
 
 var optionsObject = {
-    columns: [{
+    columns: [
+    {
         title: 'ID',
         data: '_id', // note: access nested data like this
         className: 'nameColumn'
     },
-    {title: 'All Schools',
+    {
+    title: 'All Schools',
     data: 'allSchools',
     className: 'nameColumn'
     },
-    {title: 'Regular',
+    {
+    title: 'Regular',
     data: 'regular',
     className: 'nameColumn'
     }],
