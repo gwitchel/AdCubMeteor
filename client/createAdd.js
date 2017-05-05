@@ -31,6 +31,6 @@ Template.CreateAd.events({
             // image
             createdBy: currUser,
             creationDate: new Date() 
-        }
-    }
+        })
+    },
 });

@@ -3,6 +3,15 @@ import { ReactiveVar } from 'meteor/reactive-var';
 
 import './main.html';
 
+// Callback after the file is uploaded
+Meteor.startup(function() {
+  Uploader.finished = function(index, fileInfo, templateContext) {
+    // Uploads.insert(fileInfo);
+    console.log(fileInfo);
+    // TODO:  Update the ad with the filename
+  }
+})
+
 Template.hello.onCreated(function helloOnCreated() {
   // counter starts at 0
   this.counter = new ReactiveVar(0);
@@ -48,10 +57,10 @@ Router.route('/getStarted',{
 Router.route('/studentMain',{
   name:"studentMain"
 })
-Router.route('/createAd/viewAdResults',{
+Router.route('/viewAdResults',{
   name:"viewAdResults"
 })
-Router.route('/createAd/viewAdResults/uploadImage',{
+Router.route('/uploadImage',{
   name:"uploadImage"
 })
 
