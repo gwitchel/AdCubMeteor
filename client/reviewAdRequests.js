@@ -9,6 +9,13 @@ dataTableData = function () {
 };
 
 var optionsObject = {
+    "columnDefs": [ {
+    "targets" : 3 ,
+    "data": "img",
+    "render" : function ( url, type, data) {
+        return '<img height="75%" width="75%" src="'+data["_id"]+'"/>';
+    }
+    } ],
     columns: [
     {
         title: 'ID',
