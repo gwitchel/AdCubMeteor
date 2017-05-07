@@ -34,6 +34,11 @@ var optionsObject = {
         className: 'nameColumn'
     },
     {
+        title: 'targetSchools',
+        data: 'targetSchools', // note: access nested data like this
+        className: 'nameColumn'
+    },
+    {
     title: 'date placed',
     data: 'creationDate',
     className: 'nameColumn'
@@ -56,7 +61,6 @@ var schoolObject ={
         }
         ],
 }
-
 Template.DisplayAdsTemplate.helpers({
     displayAds: function(){
         return Ads.find({createdBy : Meteor.userId() }).fetch();         
