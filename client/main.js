@@ -36,6 +36,9 @@ Router.configure({
   name: 'main', 
   layoutTemplate: 'main'
 });
+Router.route('/',{
+  name: 'home'
+});
 Router.route('/home',{
   name: 'home'
 })
