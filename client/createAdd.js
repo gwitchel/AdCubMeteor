@@ -2,7 +2,43 @@ import { Template } from 'meteor/templating';
 import { ReactiveVar } from 'meteor/reactive-var';
 import './createAdd.html';
 
+schoolTableData = function(){
+        //Create a client side only Mongo collection
+        var LocalSchools = new Mongo.Collection(null);
+        for (var i = 0; i < schools.length; i++) {
+            LocalSchools.insert(schools[i]);
+        }
+        var x = LocalSchools.find().fetch();
+        return x;
+}
+
+var schoolObject ={
+    columns: [
+        {
+            title: 'School Name',
+            data: 'schoolName', // note: access nested data like this
+            className: 'nameColumn'
+        },
+        {
+            title: 'School County',
+            data: 'schoolCounty',
+            className: 'nameColumn'
+        }
+        ],
+}
+
+Template.CreateAd.helpers({
+    schoolOptionObject: schoolObject,
+    schoolDataFunction: function(){
+        return schoolTableData;
+    }
+});
+
 Template.CreateAd.events({
+    'click #preview': function(event){
+        event.preventDefault();
+        console.log("Preview clicked");
+    },
     'submit form': function(event){
         event.preventDefault();
         //school type
