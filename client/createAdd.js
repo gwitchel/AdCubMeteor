@@ -23,9 +23,16 @@ var schoolObject ={
             title: 'School County',
             data: 'schoolCounty',
             className: 'nameColumn'
+        },
+        {
+            title: 'Student Count',
+            data: 'students',
+            className: 'nameColumn'
         }
         ],
 }
+
+
 
 Template.CreateAd.helpers({
     schoolOptionObject: schoolObject,
@@ -37,7 +44,26 @@ Template.CreateAd.helpers({
 Template.CreateAd.events({
     'click #preview': function(event){
         event.preventDefault();
-        console.log("Preview clicked");
+
+        $.fn.dataTable.ext.search.push(
+            function( settings, data, dataIndex ) {
+                var min = parseInt($("#minimum").val());
+                var max = parseInt($("#maximum").val());
+                var age = parseFloat( data["2"] ) || 0; // use data for the 3rd column
+
+                if ( ( isNaN( min ) && isNaN( max ) ) ||
+                    ( isNaN( min ) && age <= max ) ||
+                    ( min <= age   && isNaN( max ) ) ||
+                    ( min <= age   && age <= max ) )
+                {
+                    return true;
+                }
+                return false;
+            }
+        );
+
+        var t = $('#DataTables_Table_0').DataTable();
+        t.draw();
     },
     'submit form': function(event){
         event.preventDefault();
