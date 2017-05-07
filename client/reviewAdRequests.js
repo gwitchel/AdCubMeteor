@@ -23,15 +23,16 @@ var optionsObject = {
         className: 'nameColumn'
     },
     {
-    title: 'All Schools',
-    data: 'allSchools',
+    title: 'date placed',
+    data: 'creationDate',
     className: 'nameColumn'
     },
     {
-    title: 'Regular',
-    data: 'regular',
+    title: 'image',
+    data: 'image',
     className: 'nameColumn'
-    }],
+},
+],
     // ... see jquery.dataTables docs for more at https://datatables.net/
 }
 

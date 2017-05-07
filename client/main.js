@@ -8,7 +8,10 @@ Meteor.startup(function() {
   Uploader.finished = function(index, fileInfo, templateContext) {
     // Uploads.insert(fileInfo);
     console.log(fileInfo);
-    // TODO:  Update the ad with the filename
+    var curr = Session.get("currentAd")
+    Ads.update({ _id: curr }, { $set: {image: fileInfo} });
+    //console.log(Ads.find({ image: fileInfo }).fetch());
+    //console.log(foo)
   }
 })
 

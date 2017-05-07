@@ -20,7 +20,7 @@ Template.CreateAd.events({
         var upperLimit = $("#maximum").val();
         var currUser = Meteor.userId();
         //inserting ad properties to database
-         Ads.insert({
+         var ad_id = Ads.insert({
             //date 
             //name 
             //target schools 
@@ -28,9 +28,16 @@ Template.CreateAd.events({
             // amount 
             // location / type 
             // size 
-            // image
+            image: "foo",
             createdBy: currUser,
             creationDate: new Date() 
         })
+
+        // Write the ad_id to a session variable
+        Session.set("currentAd",ad_id)
+        var curr = Session.get("currentAd")
+        console.log(curr)
+        // Send the user to the next step
+        Router.go('/uploadImage');
     },
 });
