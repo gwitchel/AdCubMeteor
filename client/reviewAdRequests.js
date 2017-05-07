@@ -10,10 +10,10 @@ dataTableData = function () {
 
 var optionsObject = {
     "columnDefs": [ {
-    "targets" : 3 ,
+    "targets" : 2 ,
     "data": "img",
     "render" : function ( url, type, data) {
-        return '<img height="75%" width="75%" src="'+data["_id"]+'"/>';
+        return '<img style = "max-width:100%; height:auto" src="'+data["image"].url+'"/>';
     }
     } ],
     columns: [
@@ -26,12 +26,7 @@ var optionsObject = {
     title: 'date placed',
     data: 'creationDate',
     className: 'nameColumn'
-    },
-    {
-    title: 'image',
-    data: 'image',
-    className: 'nameColumn'
-},
+    }
 ],
     // ... see jquery.dataTables docs for more at https://datatables.net/
 }
