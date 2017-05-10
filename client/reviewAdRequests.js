@@ -10,7 +10,7 @@ dataTableData = function () {
 
 var optionsObject = {
     "columnDefs": [ {
-    "targets" : 2 ,
+    "targets" : 3 ,
     "data": "img",
     "render" : function ( url, type, data) {
         return '<img style = "max-width:100%; height:auto" src="'+data["image"].url+'"/>';

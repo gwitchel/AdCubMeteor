@@ -1,10 +1,9 @@
 <template name="main">
-{{>header}}
-<div class="container">
-{{> yield}}
-
-{{>footer}}
-</div>
+    {{>header}}
+    <div class="container">
+    {{> yield}}
+    {{>footer}}
+    </div>
 </template>
 
 <template name = "header">
@@ -20,7 +19,15 @@
    {{>navbarNotLoggedIn}}
   {{/if}}
   </div>
-
+  
+ROLES:
+      {{#if isInRole 'advertiser' 'adcub-roles'}}
+        <div> ADVERTISER </div>
+      {{else if isInRole 'school' 'adcub-roles'}}
+        <div> SCHOOL </div>
+      {{else}}
+      <div> NO ROLE </div>
+      {{/if}}
 </template>
 
 <template name = "navbarLoggedIn">
