@@ -98,6 +98,12 @@
         <span id="range2">2000</span>
     </div>
         <br> 
-        <button type="submit" class="btn btn-lg btn-primary">Continue </button>
+        <button type="submit" class="btn btn-lg btn-success">Continue </button>
+        <button id="preview" class="btn btn-lg btn-primary">Preview</button>
 </form>
+
+<h2>Preview of Selected Schools</h2>
+        {{> ReactiveDatatable tableData=schoolDataFunction options=schoolOptionObject }}
 </template>
+
+

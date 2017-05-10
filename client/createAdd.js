@@ -2,7 +2,69 @@ import { Template } from 'meteor/templating';
 import { ReactiveVar } from 'meteor/reactive-var';
 import './createAdd.html';
 
+schoolTableData = function(){
+        //Create a client side only Mongo collection
+        var LocalSchools = new Mongo.Collection(null);
+        for (var i = 0; i < schools.length; i++) {
+            LocalSchools.insert(schools[i]);
+        }
+        var x = LocalSchools.find().fetch();
+        return x;
+}
+
+var schoolObject ={
+    columns: [
+        {
+            title: 'School Name',
+            data: 'schoolName', // note: access nested data like this
+            className: 'nameColumn'
+        },
+        {
+            title: 'School County',
+            data: 'schoolCounty',
+            className: 'nameColumn'
+        },
+        {
+            title: 'Student Count',
+            data: 'students',
+            className: 'nameColumn'
+        }
+        ],
+}
+
+
+
+Template.CreateAd.helpers({
+    schoolOptionObject: schoolObject,
+    schoolDataFunction: function(){
+        return schoolTableData;
+    }
+});
+
 Template.CreateAd.events({
+    'click #preview': function(event){
+        event.preventDefault();
+
+        $.fn.dataTable.ext.search.push(
+            function( settings, data, dataIndex ) {
+                var min = parseInt($("#minimum").val());
+                var max = parseInt($("#maximum").val());
+                var age = parseFloat( data["2"] ) || 0; // use data for the 3rd column
+
+                if ( ( isNaN( min ) && isNaN( max ) ) ||
+                    ( isNaN( min ) && age <= max ) ||
+                    ( min <= age   && isNaN( max ) ) ||
+                    ( min <= age   && age <= max ) )
+                {
+                    return true;
+                }
+                return false;
+            }
+        );
+
+        var t = $('#DataTables_Table_0').DataTable();
+        t.draw();
+    },
     'submit form': function(event){
         event.preventDefault();
         //school type
@@ -119,4 +181,3 @@ Template.CreateAd.events({
         Router.go('/uploadImage');
     },
 });
-
