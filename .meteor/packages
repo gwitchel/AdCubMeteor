@@ -27,3 +27,5 @@ twbs:bootstrap
 ephemer:reactive-datatables
 tomi:upload-server
 tomi:upload-jquery
+yogiben:admin
+alanning:roles

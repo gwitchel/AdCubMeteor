@@ -15,6 +15,15 @@ Meteor.startup(function() {
   }
 })
 
+
+AdminConfig = {
+  name: 'AdCub',
+  adminEmails: ['jwitchel@colevalleygroup.com'],
+  collections: {
+    Ads: {}
+  }
+};
+
 Template.hello.onCreated(function helloOnCreated() {
   // counter starts at 0
   this.counter = new ReactiveVar(0);
