@@ -25,6 +25,9 @@ Router.configure({
 Router.route('/selectRole',{
   name: 'selectRole'
 })
+Router.route('/services',{
+  name: 'services'
+})
 Router.route('/commitInformation',{
   name: 'commitInformation'
 })
