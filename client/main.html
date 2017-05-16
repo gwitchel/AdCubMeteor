@@ -14,40 +14,45 @@
   </div>
   <div style="padding-top: 70px;">
   {{#if currentUser}}
-    {{>navbarLoggedIn}}
+    {{#if isInRole 'advertiser' 'adcub-roles'}}
+      {{>navbarLoggedInAdvertiser}}
+    {{else if isInRole 'school' 'adcub-roles'}}
+      {{>navbarLoggedInSchool}}
+    {{else}}
+      {{>selectRole}}
+    {{/if}}
   {{else}}
    {{>navbarNotLoggedIn}}
   {{/if}}
   </div>
-  
-ROLES:
-      {{#if isInRole 'advertiser' 'adcub-roles'}}
-        <div> ADVERTISER </div>
-      {{else if isInRole 'school' 'adcub-roles'}}
-        <div> SCHOOL </div>
-      {{else}}
-      <div> NO ROLE </div>
-      {{/if}}
+
 </template>
 
-<template name = "navbarLoggedIn">
+<template name = "navbarLoggedInAdvertiser">
 
   <ul class="nav nav-tabs">
   <li><a href="{{pathFor route='home'}}">Home </a></li>
   <li><a href="{{pathFor route='createAd'}}">Create Ad </a> </li>   
   <li> <a href="{{pathFor route='reviewAdRequests'}}">Review Ad Requests </a></li>
   <li><a href="{{pathFor route='updateBilling'}}">Update Billing </a></li> 
-  <li><a href="{{pathFor route='studentMain'}}">StudentMain</a></li> 
   </ul>
 </template>
+
+<template name = "navbarLoggedInSchool">
+  <ul class="nav nav-tabs">
+  <li><a href="{{pathFor route='home'}}">Home </a></li>
+  <li><a href="{{pathFor route='studentAdRequests'}}">my ad requests</a> </li>   
+  <li> <a href="{{pathFor route='schoolInformation'}}">my information</a></li>
+  </ul>
+</template>
+
 <template name = "navbarNotLoggedIn">
   <ul class="nav nav-tabs">
   <li><a href="{{pathFor route='home'}}">Home</a> </li>
   <li><a href="{{pathFor route='aboutUs'}}">About Us</a> </li>
   <li><a href="{{pathFor route='howItWorks'}}">How It Works</a></li>
-  <li> <a href="{{pathFor route='getStarted'}}">Get started placing an ad request </a></li>
   </ul>
-</template>
+</template> 
 
 <template name = "home">
   <h1>HOME</h1>
@@ -62,9 +67,7 @@ ROLES:
 <template name = "howItWorks">
     <h1>How it works</h1>
 </template>
-<template name = "getStarted">
-    <h1>Get started</h1>
-</template>
+
 
 
 

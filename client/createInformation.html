@@ -1,0 +1,37 @@
+<template name="createInformation">
+    <h1> HMMMM, it looks like you information hasn't been entered into our database... lets do something about that </h1>
+    {{>enterInfo}}
+</template>
+<template name="enterInfo">
+    <form> 
+    <input placeholder="schoolName" id="schoolName">
+           <select class="form-control" id="county">
+            <option> adams county </option>
+            <option> alamosa county </option>
+            <option> arapahoe county </option>
+            <option> archuleta county </option>
+        </select> 
+        <input placeholder="phone" id="phone">
+        <input placeholder="address" id="address">
+        <input placeholder="city" id="city">
+        <input placeholder="zip" id="zip">
+         <fieldset class="form-group">
+            <div class="form-check">
+                <label class="form-check-label">
+                    <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios1" value="normal" unchecked>
+                            normal school
+                </label>
+                <br> 
+                <label class="form-check-label">
+                    <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios2" value="other" unchecked>
+                            other type of school
+                </label>
+            </div>
+        </fieldset>
+        <label> 
+            <input type="checkbox" class="form-check-lable"> "I am a charter school"
+        </label> 
+        <br> 
+        <button type="submit" class="btn btn-lg btn-primary"> submit </button> 
+        </form>  
+</template>

@@ -14,9 +14,9 @@ Meteor.methods({
   // Server side function to set a role
   setRole:  function(role) {
     if(role === "school"){
-        Roles.addUsersToRoles( Meteor.userId(), 'school', 'adcub-roles' );
+        Roles.setUserRoles( Meteor.userId(), 'school', 'adcub-roles' );
     } else if(role === "advertiser") {
-        Roles.addUsersToRoles( Meteor.userId(), 'advertiser', 'adcub-roles');
+        Roles.setUserRoles( Meteor.userId(), 'advertiser', 'adcub-roles');
     }
     // You have to explictly reference the role-group (aka 'adcub-roles') otherwise it returns []
     // https://github.com/alanning/meteor-roles/issues/68

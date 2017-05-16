@@ -1,0 +1,34 @@
+<template name="adMetadata">
+    <form> 
+        <br> 
+        <div class="alert alert-info" role="alert">
+            <strong>Great! </strong>  
+            "we're just about ready to place your ad request, but before we do, we need a little bit more information about what you want"
+        </div> 
+        <label for="name"> your ads name </label>
+        <input placeholder="my cool name" id="name">
+        <p> The title of every ad is used to let useres easily be able to skim requests </p> 
+       
+        <label for="startDate" class="col-2 col-form-label"> start date </label>
+        <input class="form-control" type="date" value="2011-08-19" id="startDate">
+        <label for="endDate" class="col-2 col-form-label"> end date </label>
+        <input class="form-control" type="date" value="2011-08-19" id="endDate">
+        <p> Your ad can only be ran during the timeframe specified </p> 
+        
+        <label for="name"> the price of each ad </label>
+        <input placeholder="$" id="adPrice">
+        <p> Your ad request will be sent out to multiple users, the ad price is how much each user will make by placing your ad </p> 
+        <br> 
+        <label for="totalAmount"> total budget </label>
+        <input placeholder="$" id="totalAmount">
+        <p> how much you are willing to spend on this advertisement </p> 
+        <br>
+        <label for="location">the location of your ad</label>
+        <textarea class="form-control" id="location" rows="3" placeholder="please provide a brief description of where and how you would like the schools to showcase your ad"></textarea>
+        <br>
+        <label for="email" class="col-2 col-form-label"> your email </label> 
+        <input type="email" class="form-control form-control-lg" id="email" placeholder="you@example.com">
+        <br> 
+        <button type="submit" class="btn btn-primary btn-lg"> submit </button> 
+    </form>
+</template>

@@ -10,8 +10,7 @@ Meteor.startup(function() {
     console.log(fileInfo);
     var curr = Session.get("currentAd")
     Ads.update({ _id: curr }, { $set: {image: fileInfo} });
-    //console.log(Ads.find({ image: fileInfo }).fetch());
-    //console.log(foo)
+    Router.go("/adMetadata")
   }
 })
 Template.hello.onCreated(function helloOnCreated() {
@@ -25,6 +24,12 @@ Router.configure({
 });
 Router.route('/selectRole',{
   name: 'selectRole'
+})
+Router.route('/commitInformation',{
+  name: 'commitInformation'
+})
+Router.route('/createInformation',{
+  name: 'createInformation'
 })
 Router.route('/home',{
   name: 'home'
@@ -44,9 +49,6 @@ Router.route('/aboutUs',{
 Router.route('/howItWorks',{
   name:"howItWorks"
 })
-Router.route('/getStarted',{
-  name:"getStarted"
-})
 Router.route('/studentMain',{
   name:"studentMain"
 })
@@ -56,6 +58,12 @@ Router.route('/viewAdResults',{
 Router.route('/uploadImage',{
   name:"uploadImage"
 })
-
-
-
+Router.route('/studentAdRequests',{
+  name:"studentAdRequests"
+})
+Router.route('/schoolInformation',{
+  name:"schoolInformation"
+})
+Router.route('/adMetadata',{
+  name:"adMetadata"
+})
