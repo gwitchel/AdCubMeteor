@@ -46,16 +46,16 @@ Template.services.helpers({
 Template.services.events({
   'click [data-service]' ( event, template ) {
     const pricing = {
-      'full-torso-apparition': {
-        amount: 100000,
+      'small-package': {
+        amount: 1000,
         description: "Full Torso Apparition Removal"
       },
-      'free-floating-repeater': {
-        amount: 500000,
+      'medium-package': {
+        amount: 5000,
         description: "Free-Floating Repeater Removal"
       },
-      'full-roaming-vapor': {
-        amount: 1000000,
+      'large-package': {
+        amount: 10000,
         description: "Full Roaming Vapor Removal"
       }
     };

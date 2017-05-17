@@ -34,7 +34,7 @@
   <li><a href="{{pathFor route='home'}}">Home </a></li>
   <li><a href="{{pathFor route='createAd'}}">Create Ad </a> </li>   
   <li> <a href="{{pathFor route='reviewAdRequests'}}">Review Ad Requests </a></li>
-  <li><a href="{{pathFor route='services'}}">Update Billing </a></li> 
+  <li><a href="{{pathFor route='services'}}">Buy Ad Credits! </a></li> 
   </ul>
 </template>
 
@@ -56,6 +56,12 @@
 
 <template name = "home">
   <h1>HOME</h1>
+      {{#if isInRole 'advertiser' 'adcub-roles'}}
+        Advertiser Credits: {{ displayCredits }}
+    {{/if}}
+    {{#if isInRole 'school' 'adcub-roles'}}
+        School Credits: {{ displayCredits }}
+    {{/if}}
 </template>
 <template name = "aboutUs">
   <h1>About us...</h1>

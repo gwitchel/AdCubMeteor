@@ -18,6 +18,21 @@ Template.hello.onCreated(function helloOnCreated() {
   this.counter = new ReactiveVar(0);
 });
 
+Template.home.helpers({
+    // Get the value of the credits object for this user
+    displayCredits: function(){
+      credits = Credits.findOne({user : Meteor.userId()}); 
+      if(credits){
+        return '$' + (credits.amount/100).toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+      }
+      else
+      {
+        return "$ 0.00"
+      };
+    }
+});
+
+
 Router.configure({
   name: 'main', 
   layoutTemplate: 'main'
