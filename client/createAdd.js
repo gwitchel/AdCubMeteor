@@ -179,8 +179,6 @@ Template.CreateAd.events({
                 // Write the ad_id to a session variable
                 Session.set("currentAd",ad_id)
                 Session.set("dateMade", ad_id.creationDate)
-                var curr = Session.get("currentAd")
-                console.log(curr)
                 // Send the user to the next step
                 Router.go('/uploadImage');
             } else {

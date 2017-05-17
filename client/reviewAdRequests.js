@@ -3,12 +3,12 @@ import { ReactiveVar } from 'meteor/reactive-var';
 
 import './reviewAdRequests.html';
 
-dataTableData = function () {
+dataTableData1 = function () {
     var x=  Ads.find({createdBy : Meteor.userId() }).fetch(); // or .map()
     return x;
 };
 
-var optionsObject = {
+var optionsObject1 = {
     "columnDefs": [ {
     "targets" : 3 ,
     "data": "img",
@@ -40,8 +40,8 @@ Template.DisplayAdsTemplate.helpers({
     displayAds: function(){
         return Ads.find({createdBy : Meteor.userId() }).fetch();         
     },
-    reactiveDataFunction: function () {
-        return dataTableData;
+    reactiveDataFunction1: function () {
+        return dataTableData1;
     },
-    optionsObject: optionsObject
+    optionsObject1: optionsObject1
 });

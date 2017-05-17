@@ -6,7 +6,7 @@ Template.services.onCreated( () => {
 
   template.checkout = StripeCheckout.configure({
     key: Meteor.settings.public.stripe,
-    image: 'https://tmc-post-content.s3.amazonaws.com/ghostbusters-logo.png',
+   // image: 'https://tmc-post-content.s3.amazonaws.com/ghostbusters-logo.png',
     locale: 'auto',
     token( token ) {
       let service = template.selectedService.get(),
@@ -23,7 +23,8 @@ Template.services.onCreated( () => {
           template.processing.set( false );
           window.alert( error.reason, 'danger' );
         } else {
-          window.alert( 'Thanks! You\'ll be ghost free soon :)', 'success' );
+          Meteor.call('buyCredit', charge.amount);
+          window.alert( 'Thanks!', 'success' );
         }
       });
     },
@@ -46,15 +47,15 @@ Template.services.events({
   'click [data-service]' ( event, template ) {
     const pricing = {
       'full-torso-apparition': {
-        amount: 300000,
+        amount: 100000,
         description: "Full Torso Apparition Removal"
       },
       'free-floating-repeater': {
-        amount: 425000,
+        amount: 500000,
         description: "Free-Floating Repeater Removal"
       },
       'full-roaming-vapor': {
-        amount: 500000,
+        amount: 1000000,
         description: "Full Roaming Vapor Removal"
       }
     };
@@ -65,7 +66,7 @@ Template.services.events({
     template.processing.set( true );
 
     template.checkout.open({
-      name: 'Ghostbusting Service',
+      name: 'adCub credit purchase',
       description: service.description,
       amount: service.amount,
       bitcoin: true
