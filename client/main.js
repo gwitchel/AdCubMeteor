@@ -29,6 +29,10 @@ Template.home.helpers({
       {
         return "$ 0.00"
       };
+    },
+
+    displaySchool: function(){
+      return newSchools.findOne({admin: Meteor.userId()}).schoolName;
     }
 });
 

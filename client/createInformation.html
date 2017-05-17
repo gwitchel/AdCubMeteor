@@ -1,21 +1,37 @@
 <template name="createInformation">
     <h1> HMMMM, it looks like you information hasn't been entered into our database... lets do something about that </h1>
+
+    <h2>Select Your School</h2>
+    {{> ReactiveDatatable tableData=selectYourSchoolFunction options=selectYourschoolOptionObject }}
+    <hr>
+
     {{>enterInfo}}
 </template>
 <template name="enterInfo">
     <form> 
-    <input placeholder="schoolName" id="schoolName">
-           <select class="form-control" id="county">
-            <option> adams county </option>
-            <option> alamosa county </option>
-            <option> arapahoe county </option>
-            <option> archuleta county </option>
-        </select> 
-        <input placeholder="phone" id="phone">
-        <input placeholder="address" id="address">
-        <input placeholder="city" id="city">
-        <input placeholder="zip" id="zip">
+        <div class="form-group">
+            <label for="name">Your Name</label>
+            <input class="form-control" id="name" placeholder="Enter your full name">
+        </div>
+        <div class="form-group">
+            <label for="phone">Phone</label>
+            <input class="form-control" id="phone" placeholder="Enter phone">
+        </div>
+        <div class="form-group">
+            <label for="address">Address</label>
+            <input class="form-control" id="address" placeholder="Enter address">
+        </div>
+        <div class="form-group">
+            <label for="city">City</label>
+            <input class="form-control" id="city" placeholder="Enter city">
+        </div>
+        <div class="form-group">
+            <label for="zip">Zip</label>
+            <input class="form-control" id="zip" placeholder="Enter your zip code">
+        </div>
+
          <fieldset class="form-group">
+            <label for="optionsRadios">School Type</label>
             <div class="form-check">
                 <label class="form-check-label">
                     <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios1" value="normal" unchecked>
@@ -29,9 +45,9 @@
             </div>
         </fieldset>
         <label> 
-            <input type="checkbox" class="form-check-lable"> "I am a charter school"
+            <input type="checkbox" class="form-check-lable"> I represent a charter school.
         </label> 
-        <br> 
-        <button type="submit" class="btn btn-lg btn-primary"> submit </button> 
+        <br> <br> <br> 
+        <button type="submit" class="btn btn-lg btn-primary"> Submit </button> 
         </form>  
 </template>
