@@ -15,7 +15,26 @@ var optionsObject1 = {
     "render" : function ( url, type, data) {
         return '<img style = "max-width:100%; height:auto" src="'+data["image"].url+'"/>';
     }
-    } ],
+    },
+
+    {
+        "targets" : 1 ,
+        "data": "text",
+        "render" : function ( url, type, data) {
+            result = "";
+            for (i = 0; i < data.targetSchools.length; i++){
+                result = result + data.targetSchools[i].schoolName + ", ";
+            }
+            // Trim the last comma
+            if(result.length > 2){
+                result = result.substring(0, result.length - 2)
+            }
+            return result;
+        }
+    }
+
+
+ ],
     columns: [
     {
         title: 'ID',
