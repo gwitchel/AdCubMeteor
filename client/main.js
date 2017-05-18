@@ -18,7 +18,9 @@ AdminConfig = {
   name: 'AdCub',
   adminEmails: ['jwitchel@colevalleygroup.com'],
   collections: {
-    Ads: {}
+    Ads: {},
+    InsertionOrder: {},
+    Credits: {},
   }
 };
 
