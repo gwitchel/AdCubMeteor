@@ -12,7 +12,10 @@ Meteor.startup(function() {
     Ads.update({ _id: curr }, { $set: {image: fileInfo} });
     Router.go("/adMetadata")
   }
-})
+
+  Hooks.init();
+}
+)
 
 // Admin screen.  You may need to create the jwitchel and gwitchel emails
 // https://atmospherejs.com/yogiben/admin
@@ -26,10 +29,15 @@ AdminConfig = {
   }
 };
 
-Template.hello.onCreated(function helloOnCreated() {
-  // counter starts at 0
-  this.counter = new ReactiveVar(0);
-});
+    
+  // Redirects to the homepage on login and logout.
+  Hooks.onLoggedOut = function () { 
+    Router.go('/');
+   }
+
+  Hooks.onLoggedIn = function () { 
+    Router.go('/');
+   }
 
 Template.home.helpers({
     costOfAd: function(){
