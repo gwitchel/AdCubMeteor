@@ -48,15 +48,15 @@ Template.services.events({
     const pricing = {
       'small-package': {
         amount: 100000,
-        description: "Full Torso Apparition Removal"
+        description: "small"
       },
       'medium-package': {
         amount: 500000,
-        description: "Free-Floating Repeater Removal"
+        description: "medium"
       },
       'large-package': {
         amount: 1000000,
-        description: "Full Roaming Vapor Removal"
+        description: "large"
       }
     };
 

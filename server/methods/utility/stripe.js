@@ -25,7 +25,8 @@ Meteor.methods({
     } else {
       Credits.insert({
         user: Meteor.userId(),
-        amount: amount
+        amount: amount,
+        charges : []
       })
     }
   }

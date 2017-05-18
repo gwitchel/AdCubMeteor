@@ -13,6 +13,17 @@ Template.adMetadata.events({
         var location = $("#location").val();
         var totalAmount = $("#totalAmount").val();
         var email = $("#email").val();
+        var budget = Credits.find({user: Meteor.userId()}).fetch()
+        budget = budget[0].amount 
+        console.log(budget);
+        if ((budget - totalAmount) < 0){
+            window.alert("Your so poor! -from kana")
+        } else {
+            var newBudget = budget-totalAmount;
+            budget = Credits.find({user: Meteor.userId()}).fetch()
+            var userAdmin = budget[0]._id
+            Credits.update({_id : userAdmin }, { $set: {amount: newBudget} }); 
+        }
         Ads.update({ _id: currentAd }, { $set: {name: name} });
         Ads.update({ _id: currentAd }, { $set: {timeFrame: SD + " - " + ED} });
         Ads.update({ _id: currentAd }, { $set: {amountPerAd: price} })

@@ -19,6 +19,9 @@ Template.hello.onCreated(function helloOnCreated() {
 });
 
 Template.home.helpers({
+    costOfAd: function(){
+      return newSchools.findOne({admin: Meteor.userId()}).amount;
+    },
     // Get the value of the credits object for this user
     displayCredits: function(){
       credits = Credits.findOne({user : Meteor.userId()}); 
@@ -88,4 +91,8 @@ Router.route('/schoolInformation',{
 })
 Router.route('/adMetadata',{
   name:"adMetadata"
+})
+Router.route('/acceptOffer/:_id', function (){
+  var item = Ads.findOne({_id: this.params._id});
+  this.render("schoolAcceptOrder", {data : item})
 })

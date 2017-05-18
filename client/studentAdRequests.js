@@ -20,7 +20,6 @@ dataTableData = function () {
     return adsTargettingUser;
 
 };
-
 var optionsObject = {
     "columnDefs": [ {
     "targets" : 3 ,
@@ -49,10 +48,20 @@ var optionsObject = {
     title: 'location',
     data: 'location',
     className: 'nameColumn'
-    }
+},   {
+    title: 'accept',
+    "data": "_id", 
+        "fnCreatedCell": function(nTd, sData, oData, iRow, iCol){
+            $(nTd).html("<a href ='/acceptOffer/"+oData._id+"'>Accept Offer</a>" );
+        },
+    className: 'nameColumn'
+}
+
+
 ],
     // ... see jquery.dataTables docs for more at https://datatables.net/
 }
+
 
 Template.DisplayAdRequests.helpers({
     displayAds: function(){
@@ -63,3 +72,13 @@ Template.DisplayAdRequests.helpers({
     },
     optionsObject: optionsObject
 });
+Template.DisplayAdRequests.events({
+    'click tbody > tr': function (event) {
+        var dataTable = $(event.target).closest('table').DataTable();
+        var rowData = dataTable.row(event.currentTarget).data();
+        if (!rowData) return; // Won't be data if a placeholder row is clicked
+        // Your click handler logic here
+        $(event.currentTarget).css('background-color', '#bada55')
+        Session.set("schoolNameCookie", rowData["schoolName"]);
+    },
+})

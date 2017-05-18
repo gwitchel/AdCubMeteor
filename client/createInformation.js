@@ -62,7 +62,7 @@ Template.createInformation.events({
         var zip = $('#zip').val();
         var schoolType = $('#schoolType').val();
         var charterSchool = $('input[type="checkbox"]').prop("checked")
-
+        var amount = $("#amount").val(); 
         var schoolIsMapped = newSchools.findOne({schoolName: schoolName});
         if (schoolIsMapped)
         {
@@ -77,6 +77,7 @@ Template.createInformation.events({
                 zip: zip,
                 schoolType: schoolType,
                 charterSchool: charterSchool,
+                amount: amount,
                 admin: Meteor.userId(),
                 creationDate: new Date() 
             })
