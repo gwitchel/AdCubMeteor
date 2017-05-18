@@ -1,6 +1,6 @@
 import { Template } from 'meteor/templating';
 import { ReactiveVar } from 'meteor/reactive-var';
-
+import { Roles } from 'meteor/alanning:roles'
 import './main.html';
 
 // Callback after the file is uploaded
@@ -10,11 +10,9 @@ Meteor.startup(function() {
     console.log(fileInfo);
     var curr = Session.get("currentAd")
     Ads.update({ _id: curr }, { $set: {image: fileInfo} });
-    //console.log(Ads.find({ image: fileInfo }).fetch());
-    //console.log(foo)
+    Router.go("/adMetadata")
   }
 })
-
 
 AdminConfig = {
   name: 'AdCub',
@@ -29,22 +27,44 @@ Template.hello.onCreated(function helloOnCreated() {
   this.counter = new ReactiveVar(0);
 });
 
-Template.hello.helpers({
-  counter() {
-    return Template.instance().counter.get();
-  },
+Template.home.helpers({
+    costOfAd: function(){
+      return newSchools.findOne({admin: Meteor.userId()}).amount;
+    },
+    // Get the value of the credits object for this user
+    displayCredits: function(){
+      credits = Credits.findOne({user : Meteor.userId()}); 
+      if(credits){
+        return '$' + (credits.amount/100).toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+      }
+      else
+      {
+        return "$ 0.00"
+      };
+    },
+
+    displaySchool: function(){
+      return newSchools.findOne({admin: Meteor.userId()}).schoolName;
+    }
 });
 
-Template.hello.events({
-  'click button'(event, instance) {
-    // increment the counter when button is clicked
-    instance.counter.set(instance.counter.get() + 1);
-  },
-});
+
 Router.configure({
   name: 'main', 
   layoutTemplate: 'main'
 });
+Router.route('/selectRole',{
+  name: 'selectRole'
+})
+Router.route('/services',{
+  name: 'services'
+})
+Router.route('/commitInformation',{
+  name: 'commitInformation'
+})
+Router.route('/createInformation',{
+  name: 'createInformation'
+})
 Router.route('/home',{
   name: 'home'
 })
@@ -63,9 +83,6 @@ Router.route('/aboutUs',{
 Router.route('/howItWorks',{
   name:"howItWorks"
 })
-Router.route('/getStarted',{
-  name:"getStarted"
-})
 Router.route('/studentMain',{
   name:"studentMain"
 })
@@ -75,6 +92,16 @@ Router.route('/viewAdResults',{
 Router.route('/uploadImage',{
   name:"uploadImage"
 })
-
-
-
+Router.route('/studentAdRequests',{
+  name:"studentAdRequests"
+})
+Router.route('/schoolInformation',{
+  name:"schoolInformation"
+})
+Router.route('/adMetadata',{
+  name:"adMetadata"
+})
+Router.route('/acceptOffer/:_id', function (){
+  var item = Ads.findOne({_id: this.params._id});
+  this.render("schoolAcceptOrder", {data : item})
+})

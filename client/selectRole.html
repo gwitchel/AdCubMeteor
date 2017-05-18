@@ -1,0 +1,76 @@
+<template name="selectRole">
+    <div class="alert alert-warning" role="alert">
+        <h3> Before you continue to your homepage please specify whether you are an advertiser or a school.</h3>
+    </div>
+    <form> 
+        <fieldset class="form-group">
+            <div class="form-check">
+                <label class="form-check-label">
+                    <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios1" value="school" unchecked>
+                            I represent a school.
+                </label>
+                <br> 
+                <label class="form-check-label">
+                    <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios2" value="advertiser" unchecked>
+                            I represent an advertiser.
+                </label>
+            </div>
+        </fieldset>
+        <button type = "submit" class="btn btn-lg btn-primary"> Submit </button> 
+    
+    </form>
+    <br>
+    {{#if isInRole 'advertiser' 'adcub-roles'}}
+        {{>advertiserInfo}}
+    {{/if}}
+    {{#if isInRole 'school' 'adcub-roles'}}
+        {{>schoolInfo}}
+    {{/if}}
+</template>
+
+<template name="schoolInfo">
+    <form>
+        <input placeholder="name of school">
+        <select class="form-control" id="county">
+            <option> adams county </option>
+            <option> alamosa county </option>
+            <option> arapahoe county </option>
+            <option> archuleta county </option>
+        </select> 
+        <input placeholder="phone">
+        <input placeholder="address">
+        <input placeholder="city">
+        <input placeholder="zip">
+         <fieldset class="form-group">
+            <div class="form-check">
+                <label class="form-check-label">
+                    <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios1" value="normal" unchecked>
+                            normal school
+                </label>
+                <br> 
+                <label class="form-check-label">
+                    <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios2" value="other" unchecked>
+                            other type of school
+                </label>
+            </div>
+        </fieldset>
+        <label> 
+            <input type="checkbox" class="form-check-lable"> "I am a charter school"
+        </label> 
+        <br> 
+        <button type = "submit" class="btn btn-lg btn-primary"> Submit </button>
+    </form> 
+</template>
+<template name="advertiserInfo">
+    <form> 
+        <input placeholder="company name">
+        <br> 
+        <br> 
+        <div class="form-group">
+            <textarea class="form-control" id="companyDescription" rows="3" placeholder="provide a short description of your company"></textarea>
+        </div>
+        <br> 
+        <button type = "submit" class="btn btn-lg btn-primary"> Submit </button>
+    </form> 
+</template>
+

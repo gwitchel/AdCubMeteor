@@ -90,18 +90,19 @@ Template.CreateAd.events({
         var levels = ["G-K","G-1","G-2","G-3","G-4","G-5","G-6","G-7","G-8","G-9","G-10","G-11","G-12",]
 
             function redirect(){
+                var sortedSchools = [];
                 if(!(allSchools)){
-                    sort(reguler, "schoolType", "Regular school");
-                    sort(other, "schoolType", "Other/Alternative school");
-                    swap(); 
+                        sort(regular, "schoolType", "Regular school");
+                        sort(other, "schoolType", "Other/Alternative school");
+                        swap(); 
                 }
                 if(!(allGrades)){
                     gradeDecide(highSchool, 1, 5);
                     gradeDecide(middleSchool,5,8);
                     gradeDecide(lowerSchool,8,13);
-                    gradeSort();
+                    gradeSort(); 
                 }
-                numberSort(lowerLimit,upperLimit); 
+                numberSort(lowerLimit,upperLimit); ;
                 console.log(schools)   
             }
 
@@ -160,24 +161,31 @@ Template.CreateAd.events({
                 }
             }
         //inserting ad properties to database
-        redirect(); 
-         var ad_id = Ads.insert({
-            //date 
-            //name 
-            targetSchools: schools,
-            //time frame
-            // amount 
-            // location / type 
-            // size 
-            image: "incomplete" ,
-            createdBy: currUser,
-            creationDate: new Date() 
-        })
-        // Write the ad_id to a session variable
-        Session.set("currentAd",ad_id)
-        var curr = Session.get("currentAd")
-        console.log(curr)
-        // Send the user to the next step
-        Router.go('/uploadImage');
+        if(!(allSchools && regular && other) && !(allGrades && highSchool && middleSchool && lowerSchool) && lowerLimit<upperLimit){
+            redirect(); 
+            if(schools.length !==0){
+                var ad_id = Ads.insert({
+                    name : "incomplete",
+                    targetSchools: schools,
+                    timeFrame: "incomplete",
+                    amountPerAd: "incomplete", 
+                    totalAmount: "incomplete", 
+                    location: "incomplete",
+                    image: "incomplete" ,
+                    creatorEmail: "incomplete",
+                    createdBy: currUser,
+                    creationDate: new Date() 
+                })
+                // Write the ad_id to a session variable
+                Session.set("currentAd",ad_id)
+                Session.set("dateMade", ad_id.creationDate)
+                // Send the user to the next step
+                Router.go('/uploadImage');
+            } else {
+                window.alert("uh-oh, it looks like there aren't any registered schools that fit your search... try widening your range")
+            }
+        } else {
+            window.alert("oops, it looks like you missed some information when filling out your form")
+        }
     },
 });
