@@ -1,9 +1,8 @@
 <template name='reviewAdRequests'>
-        <h3 >Review requests for ads you have already submitted</h3>
+        <h1 >Review Ad Requests </h1>
         <p id='bar'> </p> 
         {{>DisplayAdsTemplate}}
 </template>
 <template name = 'DisplayAdsTemplate' >
-        <h2>My Ads</h2>
         {{> ReactiveDatatable tableData=reactiveDataFunction1 options=optionsObject1 }}
 </template>

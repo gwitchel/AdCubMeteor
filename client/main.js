@@ -41,7 +41,16 @@ AdminConfig = {
 
 Template.home.helpers({
     costOfAd: function(){
-      return newSchools.findOne({admin: Meteor.userId()}).amount;
+      cost = newSchools.findOne({admin: Meteor.userId()}).amount;
+      return '$' + (cost/100).toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+    },
+    displayAdCount: function(){
+      count = Ads.find({createdBy: Meteor.userId()}).count();
+      if (count > 0){
+        return count;
+      } else{
+        return "None";
+      }
     },
     // Get the value of the credits object for this user
     displayCredits: function(){

@@ -1,1 +1,20 @@
 /* CSS declarations go here */
+.label-group>div>*{
+        font-size: 10pt;
+}
+.label-group>div{
+    margin: 10pt;
+}
+.label-group>.label:first-child {
+	border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    margin-right: 0;
+}
+    
+.label-group>.label:nth-child(2) {
+	border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    margin-left: 0;
+    filter: alpha(opacity=70);
+    opacity: 0.7;
+}
