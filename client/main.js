@@ -109,3 +109,6 @@ Router.route('/acceptOffer/:_id', function (){
   var item = Ads.findOne({_id: this.params._id});
   this.render("schoolAcceptOrder", {data : item})
 })
+Router.route('/', {
+    template: 'home'
+});
