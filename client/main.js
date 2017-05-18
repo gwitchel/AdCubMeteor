@@ -14,9 +14,11 @@ Meteor.startup(function() {
   }
 })
 
+// Admin screen.  You may need to create the jwitchel and gwitchel emails
+// https://atmospherejs.com/yogiben/admin
 AdminConfig = {
   name: 'AdCub',
-  adminEmails: ['jwitchel@colevalleygroup.com'],
+  adminEmails: ['jwitchel@colevalleygroup.com', 'gwitchel@gmail.com'],
   collections: {
     Ads: {},
     InsertionOrder: {},
