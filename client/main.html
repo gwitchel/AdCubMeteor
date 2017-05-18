@@ -19,7 +19,7 @@
     {{else if isInRole 'school' 'adcub-roles'}}
       {{>navbarLoggedInSchool}}
     {{else}}
-      {{>selectRole}}
+      <!-- Do not display a nav bar -->
     {{/if}}
   {{else}}
    {{>navbarNotLoggedIn}}
@@ -68,8 +68,7 @@
 	<div><span class="label label-success">Available Advertiser Credits</span> <span class="label label-default">{{ displayCredits }}</span></div>
 	<div><span class="label label-success">Open Ad Count</span> <span class="label label-default">{{ displayAdCount }}</span></div>
 </div>
-    {{/if}}
-    {{#if isInRole 'school' 'adcub-roles'}}
+    {{else if isInRole 'school' 'adcub-roles'}}
         <div class="panel panel-info">
         <div class="panel-heading">
                 <h3 class="panel-title">Getting Started</h3>
@@ -83,8 +82,18 @@
         <div><span class="label label-success">My School</span> <span class="label label-default">{{ displaySchool }}</span></div>
         <div><span class="label label-success">Ad Cost</span> <span class="label label-default">{{ costOfAd }}</span></div>
       </div>
+    {{ else if currentUser}}
+    <!--Logged in with no role-->
+      {{>selectRole}}
+    {{ else }}
+      {{ >WelcomeNotLoggedIn }}
     {{/if}}
 </template>
+
+<template name="WelcomeNotLoggedIn">
+  AdCub is a great place to bring advertisers and schools together
+</template>
+
 <template name = "aboutUs">
   <h1>About Us</h1>
 </template>
