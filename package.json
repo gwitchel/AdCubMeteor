@@ -10,6 +10,6 @@
     "meteor-node-stubs": "~0.2.4"
   },
   "engines": {
-    "node": "4.8.2"
+    "node": "6.10.2"
   }
 }
