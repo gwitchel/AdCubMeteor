@@ -29,8 +29,8 @@ AdminConfig = {
   }
 };
 
-    
   // Redirects to the homepage on login and logout.
+  // https://atmospherejs.com/differential/event-hooks
   Hooks.onLoggedOut = function () { 
     Router.go('/');
    }
