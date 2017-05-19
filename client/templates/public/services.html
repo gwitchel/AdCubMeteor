@@ -1,14 +1,18 @@
 <template name="services">
   <div class="row">
-    <div class="col-xs-12 col-md-6">
-      <h4 class="page-header">Buy some credits!</h4>
+    <div>
+      <h1 >Buy Ad Credits</h1>
       {{# unless processing}}
-        <p class="alert alert-info">Here's how it works:
+        <div class="panel panel-info">
+        <div class="panel-heading">
+          <h3 class="panel-title">Here's How It Works</h3>
+        </div>
+        <div class="panel-body">
           When a school agrees to run an ad, they draw against these credits until either you run 
-          out of credits or you hit your total budget in your ad order.  To set started buy some ad credits!
-          <br><br>
-          <strong>Schools set their own prices based on their local markets.</strong>  
-        </p>
+        out of credits or you hit your total budget in your ad order.  To set started buy some ad credits!
+        <br><br>
+        <strong>Schools set their own prices based on their local markets.</strong> </div>
+        </div>
 
         <ul class="list-group price-list">
           <li class="list-group-item clearfix">

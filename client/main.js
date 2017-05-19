@@ -12,15 +12,45 @@ Meteor.startup(function() {
     Ads.update({ _id: curr }, { $set: {image: fileInfo} });
     Router.go("/adMetadata")
   }
-})
-Template.hello.onCreated(function helloOnCreated() {
-  // counter starts at 0
-  this.counter = new ReactiveVar(0);
-});
+
+  Hooks.init();
+}
+)
+
+// Admin screen.  You may need to create the jwitchel and gwitchel emails
+// https://atmospherejs.com/yogiben/admin
+AdminConfig = {
+  name: 'AdCub',
+  adminEmails: ['jwitchel@colevalleygroup.com', 'gwitchel@gmail.com'],
+  collections: {
+    Ads: {},
+    InsertionOrder: {},
+    Credits: {},
+  }
+};
+
+  // Redirects to the homepage on login and logout.
+  // https://atmospherejs.com/differential/event-hooks
+  Hooks.onLoggedOut = function () { 
+    Router.go('/');
+   }
+
+  Hooks.onLoggedIn = function () { 
+    Router.go('/');
+   }
 
 Template.home.helpers({
     costOfAd: function(){
-      return newSchools.findOne({admin: Meteor.userId()}).amount;
+      cost = newSchools.findOne({admin: Meteor.userId()}).amount;
+      return '$' + (cost/100).toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+    },
+    displayAdCount: function(){
+      count = Ads.find({createdBy: Meteor.userId()}).count();
+      if (count > 0){
+        return count;
+      } else{
+        return "None";
+      }
     },
     // Get the value of the credits object for this user
     displayCredits: function(){
@@ -96,3 +126,6 @@ Router.route('/acceptOffer/:_id', function (){
   var item = Ads.findOne({_id: this.params._id});
   this.render("schoolAcceptOrder", {data : item})
 })
+Router.route('/', {
+    template: 'home'
+});
