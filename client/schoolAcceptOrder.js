@@ -20,9 +20,8 @@ Template.schoolAcceptOrder.rendered = function(){
             createdBy: createdBy
         })
         var advertiserCredit = Credits.findOne({user : currentAd.createdBy});
-        var schoolCredit = Credits.findOne({user : currentSchool.createdBy});
+        var schoolCredit = Credits.findOne({user : currentSchool.admin});
         Credits.update({ _id: advertiserCredit._id }, { $set: {amount: (advertiserCredit.amount - amount)} });
-        
         if(schoolCredit){
         Credits.update({ _id: schoolCredit._id }, { $set: {amount: (schoolCredit.amount + amount )} });
         } else{
@@ -31,7 +30,15 @@ Template.schoolAcceptOrder.rendered = function(){
                  amount: amount,
                  charges : []
             })
+            
         }
-
+        var school  = newSchools.findOne({admin: Meteor.userId()})
+        var adsCurrentRunning = currentAd.schoolsRunning
+        adsCurrentRunning.push(currentAd)
+        var schoolCurrentRunning = school.runningAds
+        schoolCurrentRunning.push(Meteor.userId())
+        newSchools.update({ _id: school._id }, { $set: {runningAds: adsCurrentRunning}});
+        Ads.update({ _id: currentAd._id }, { $set: {schoolsRunning: schoolCurrentRunning}});
+        Credits.update({ _id: advertiserCredit._id }, { $set: {charges:{ school : school.schoolName}} });
     }
 }

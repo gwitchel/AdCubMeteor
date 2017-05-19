@@ -70,6 +70,7 @@ Template.createInformation.events({
         } else {
               newSchools.insert({
                 name: name,
+                runningAds : [], 
                 schoolName: schoolName,
                 phone: phone,
                 address: address,

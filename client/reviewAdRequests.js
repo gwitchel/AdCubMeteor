@@ -41,6 +41,7 @@ var optionsObject1 = {
         data: '_id', // note: access nested data like this
         className: 'nameColumn'
     },
+    
     {
         title: 'targetSchools',
         data: 'targetSchools', // note: access nested data like this

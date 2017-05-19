@@ -30,8 +30,8 @@ var optionsObject = {
     } ],
     columns: [
     {
-        title: 'title',
-        data: 'title', // note: access nested data like this
+        title: 'name',
+        data: 'name', // note: access nested data like this
         className: 'nameColumn'
     },
     {

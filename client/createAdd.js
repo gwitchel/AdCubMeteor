@@ -167,6 +167,7 @@ Template.CreateAd.events({
                 var ad_id = Ads.insert({
                     name : "incomplete",
                     targetSchools: schools,
+                    schoolsRunning: [],
                     timeFrame: "incomplete",
                     amountPerAd: "incomplete", 
                     totalAmount: "incomplete", 
