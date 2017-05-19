@@ -91,20 +91,17 @@
     <div class="form-group" style="width: 25%">
          <label for="minimum">Select by school population </label> 
         <p>Minimum </p>
-        <input type="range"  min="0" max="5000" id="minimum"/>
-        <span id="range">0 Students</span>
+        <input type="text" id="minimum" placeholder="0"/>
         <p>Maximum </p> 
-        <input type="range"   min="0" max="5000" id="maximum"/>
-        <span id="range2">5,000 Students</span>
+        <input type="text"   min="0" max="5000" id="maximum" placeholder="5,000"/>
     </div>
         <br>
-    <input id="ex16b" type="text"/><br/>
         <button type="submit" class="btn btn-lg btn-success">Continue </button>
-        <button id="preview" class="btn btn-lg btn-primary">Preview</button>
+        <!--<button id="preview" class="btn btn-lg btn-primary">Preview</button> !-->
 </form>
 
-<h2>Preview of Selected Schools</h2>
-        {{> ReactiveDatatable tableData=schoolDataFunction options=schoolOptionObject }}
+<!--<h2>Preview of Selected Schools</h2>
+      {{> ReactiveDatatable tableData=schoolDataFunction options=schoolOptionObject }} !-->
 </template>
 
 

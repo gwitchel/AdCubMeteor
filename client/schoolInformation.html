@@ -1,5 +1,19 @@
 <template name="schoolInformation">
+        <h3> My current information </h3>
+        <div class="well">
+        <h4> 
+            <span class="label label-warning">my current School</span> <span class="label label-info">{{ schoolName }}</span><br><br>
+            <span class="label label-warning">my name</span> <span class="label label-info">{{ userName }}</span><br><br>
+            <span class="label label-warning">point of contact</span> <span class="label label-info">{{ phone }}</span><br><br>
+            <span class="label label-warning">ID</span> <span class="label label-info">{{ userid }}</span>
+        </h4>
+        </div> 
+        <h2> not right? </h2>
+        <div class="well">
+        <p> enter your school name below to update your information </p>
         {{>noInfo}}
+        </div>
+
 </template> 
 
 <template name="infoFound">
@@ -9,6 +23,6 @@
 <template name="noInfo">
     <form> 
         <input placeholder="school name" id="schoolName" >
-        <button type = "submit" class="btn btn-lg btn-primary"> Submit </button>
+        <button type = "submit" class="btn btn-sm btn-primary"> Submit </button>
     </form> 
 </template>

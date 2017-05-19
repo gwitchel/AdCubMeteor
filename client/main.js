@@ -10,12 +10,17 @@ Meteor.startup(function() {
     console.log(fileInfo);
     var curr = Session.get("currentAd")
     Ads.update({ _id: curr }, { $set: {image: fileInfo} });
-    Router.go("/adMetadata")
   }
-
   Hooks.init();
 }
 )
+
+Template.uploadImage.events({
+  'submit form': function(){
+      event.preventDefault();
+      Router.go("/adMetadata")
+  }
+})
 
 // Admin screen.  You may need to create the jwitchel and gwitchel emails
 // https://atmospherejs.com/yogiben/admin
@@ -68,6 +73,17 @@ Template.home.helpers({
       return newSchools.findOne({admin: Meteor.userId()}).schoolName;
     }
 });
+
+Template.howItWorks.helpers({
+  userSchools: function(){
+    var schools = newSchools.find().fetch().length; 
+    return schools;
+  },
+   userAds: function(){
+    var ads = Ads.find().fetch().length; 
+    return ads;
+  }
+})
 
 
 Router.configure({

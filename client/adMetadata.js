@@ -17,7 +17,7 @@ Template.adMetadata.events({
         budget = budget[0].amount 
         console.log(budget);
         if ((budget - totalAmount) < 0){
-            window.alert("Your so poor! -from kana")
+            window.alert("uh-oh, it looks like you do not have enough credits to purchase this ad. Please buy more credits and try again")
         } else {
             var newBudget = budget-totalAmount;
             budget = Credits.find({user: Meteor.userId()}).fetch()
@@ -30,6 +30,6 @@ Template.adMetadata.events({
         Ads.update({ _id: currentAd }, { $set: {totalAmount: totalAmount} })
         Ads.update({ _id: currentAd }, { $set: {location: location} })
         Ads.update({ _id: currentAd }, { $set: {email: email} })
-
+        Router.go("reviewAdRequests")
     }
 })

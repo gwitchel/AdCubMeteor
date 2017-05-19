@@ -42,5 +42,24 @@ Template.schoolInformation.events({
     }
 }) 
 
+Template.schoolInformation.helpers({
+    schoolName: function(){
+      name = newSchools.findOne({admin: Meteor.userId()}).schoolName;
+      return name; 
+    },
+    userName: function(){
+      username = newSchools.findOne({admin: Meteor.userId()}).name;
+      return username; 
+    },
+    phone: function(){
+      phone = newSchools.findOne({admin: Meteor.userId()}).phone;
+      return phone; 
+    },
+    userid: function(){
+      theid = newSchools.findOne({admin: Meteor.userId()})._id;
+      return theid; 
+    }
+})
+
 
  

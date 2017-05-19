@@ -51,7 +51,7 @@ var optionsObject1 = {
     title: 'date placed',
     data: 'creationDate',
     className: 'nameColumn'
-    }
+}
 ],
     // ... see jquery.dataTables docs for more at https://datatables.net/
 }
