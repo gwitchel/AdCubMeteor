@@ -1,8 +1,10 @@
+<!-- services template shows the options for ad purchase packages!-->
 <template name="services">
   <div class="row">
     <div>
       <h1 >Buy Ad Credits</h1>
       {{# unless processing}}
+         <!--Heading--> 
         <div class="panel panel-info">
         <div class="panel-heading">
           <h3 class="panel-title">Here's How It Works</h3>
@@ -13,16 +15,18 @@
         <br><br>
         <strong>Schools set their own prices based on their local markets.</strong> </div>
         </div>
-
         <ul class="list-group price-list">
+          <!-- option 1--> 
           <li class="list-group-item clearfix">
             <p class="pull-left"><strong>$1,000</strong> &mdash; Trial: 3-5 schools.</p>
             <a href="#" data-service="small-package" class="btn btn-success pull-right">Buy Now</a>
           </li>
+          <!-- option 2--> 
           <li class="list-group-item clearfix">
             <p class="pull-left"><strong>$5,000</strong> &mdash; Test Buy: 15-25 schools, larger ads.</p>
             <a href="#" data-service="medium-package" class="btn btn-success pull-right">Buy Now</a>
           </li>
+          <!-- option 3--> 
           <li class="list-group-item clearfix">
             <p class="pull-left"><strong>$10,000</strong> &mdash;Basic Run: 30-50 schools, larger ads.</p>
             <a href="#" data-service="large-package" class="btn btn-success pull-right">Buy Now</a>

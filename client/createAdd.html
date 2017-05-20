@@ -1,107 +1,105 @@
+<!-- createAd template allows users to find the demographic their ad is targetting !-->
 <template name = "CreateAd">
     <h1>Create an Ad</h1>
-<div class="panel panel-info">
-            <div class="panel-heading">
-              <h3 class="panel-title">Let's get started!</h3>
-            </div>
-            <div class="panel-body">
-              AdCub offers multiple ways to place an ad in high-schools around the country.  
-              Start by filling out the following form to get started.
-            </div>
-          </div>
-
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            <h3 class="panel-title">Let's get started!</h3>
+        </div>
+        <div class="panel-body">
+            AdCub offers multiple ways to place an ad in high-schools around the country.  
+            Start by filling out the following form to get started.
+        </div>
+    </div>
     <h2 id = "title">Select Your Demographics</h2>
-
-<form>
-
-    <!-- Reference for bootstrap forms: https://v4-alpha.getbootstrap.com/components/forms/-->
-    <div class="form-group">
-        <label for="exampleInputEmail1" >Type of School</label>
-    <div class="form-check">
-    <label class="form-check-label">
-        <input class="form-check-input" type="checkbox"  id="allSchools" checked>
-        All schools
-    </label>
-    </div>
-    <div class="form-check">
-    <label class="form-check-label">
-        <input class="form-check-input" type="checkbox" id="regularSchools">
-        Regular Schools
-    </label>
-    </div>
-    <div class="form-check">
-    <label class="form-check-label">
-        <input class="form-check-input" type="checkbox" id="other">
-        Other
-    </label>
-    </div>
-    <small id="typeHelp" class="form-text text-muted">Other schools include  non-traditional schools, religious schools, and special educations schools.</small>
-    </div>
-
-
-    <div class="form-group">
-        <label for="exampleInputEmail1">School Levels</label>
-    <div class="form-check">
-    <label class="form-check-label">
-        <input class="form-check-input" type="checkbox" id="allGrades" checked>
-        All Grades
-    </label>
-    </div>
-    <div class="form-check">
-    <label class="form-check-label">
-        <input class="form-check-input" type="checkbox" id="highSchool">
-        High School
-    </label>
-    </div>
-    <div class="form-check">
-    <label class="form-check-label">
-        <input class="form-check-input" type="checkbox" id="middleSchool">
-        Middle Schools
-    </label>
-    </div>
-    <div class="form-check">
-    <label class="form-check-label">
-        <input class="form-check-input" type="checkbox" id="lowerSchool">
-        Lower Schools
-    </label>
-    </div>
-    <small id="gradeHelp" class="form-text text-muted">High-school typically means grades 9-12.  Middle school means 6-8th grades.  Lower School is below 6th grade.</small>
-    </div>
-
-
-    <div class="form-group">
-        <label for="exampleAtypical">Would you like to advertise to school if they contain grades other than the grades specified?</label>
-    <div class="form-check">
-    <label class="form-check-label">
-        <input class="form-check-input" type="radio" name="allowAtypical" id="yes" value="Yes" checked>
-        Yes
-    </label>
-    </div>
-    <div class="form-check">
-    <label class="form-check-label">
-        <input class="form-check-input" type="radio" name="allowAtypical" id="no" value="No">
-        No
-    </label>
-    </div>
-        <small id="atypicalHelp" class="form-text text-muted">Not all schools strictly adhere to the standard k-6, 6-8, 9-12 format.
-            If you want to limit your ads to schools that strictly follow the k-6, 6-8, 9-12 format select "No".
-        </small>
-    </div>
-
-    <div class="form-group" style="width: 25%">
-         <label for="minimum">Select by school population </label> 
-        <p>Minimum </p>
-        <input type="text" id="minimum" placeholder="0"/>
-        <p>Maximum </p> 
-        <input type="text"   min="0" max="5000" id="maximum" placeholder="5,000"/>
-    </div>
+    <form>
+        <!-- Reference for bootstrap forms: https://v4-alpha.getbootstrap.com/components/forms/-->
+        <!--Decide type of school !-->
+        <div class="form-group">
+            <label for="exampleInputEmail1" >Type of School</label>
+            <div class="form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" type="checkbox"  id="allSchools" checked>
+                    All schools
+                </label>
+            </div>
+        <!--Decide whether or not to include non regular schools!-->
+        <div class="form-check">
+            <label class="form-check-label">
+                <input class="form-check-input" type="checkbox" id="regularSchools">
+                Regular Schools
+            </label>
+        </div>
+        <div class="form-check">
+            <label class="form-check-label">
+                <input class="form-check-input" type="checkbox" id="other">
+                Other
+            </label>
+        </div>
+        <small id="typeHelp" class="form-text text-muted">Other schools include  non-traditional schools, religious schools, and special educations schools.</small>
+        </div>
+        <div class="form-group">
+            <label for="exampleInputEmail1">School Levels</label>
+            <div class="form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" type="checkbox" id="allGrades" checked>
+                    <!--Decide target grades !-->
+                    All Grades
+                </label>
+            </div>
+            <div class="form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" type="checkbox" id="highSchool">
+                    High School
+                </label>
+            </div>
+            <div class="form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" type="checkbox" id="middleSchool">
+                    Middle Schools
+                </label>
+            </div>
+            <div class="form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" type="checkbox" id="lowerSchool">
+                    Lower Schools
+                </label>
+            </div>
+            <small id="gradeHelp" class="form-text text-muted">High-school typically means grades 9-12.  Middle school means 6-8th grades.  Lower School is below 6th grade.</small>
+        </div>
+        <!-- Allow atypical schools !-->
+        <div class="form-group">
+            <label for="exampleAtypical">Would you like to advertise to school if they contain grades other than the grades specified?</label>
+            <div class="form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" type="radio" name="allowAtypical" id="yes" value="Yes" checked>
+                    Yes
+                </label>
+            </div>
+            <div class="form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" type="radio" name="allowAtypical" id="no" value="No">
+                    No
+                </label>
+            </div>
+            <small id="atypicalHelp" class="form-text text-muted">Not all schools strictly adhere to the standard k-6, 6-8, 9-12 format.
+                If you want to limit your ads to schools that strictly follow the k-6, 6-8, 9-12 format select "No".
+            </small>
+        </div>
+        <!-- input target school population!-->
+        <div class="form-group" style="width: 25%">
+            <label for="minimum">Select by school population </label> 
+            <p>Minimum </p>
+            <input type="text" id="minimum" placeholder="0"/>
+            <p>Maximum </p> 
+            <input type="text"   min="0" max="5000" id="maximum" placeholder="5,000"/>
+        </div>
         <br>
         <button type="submit" class="btn btn-lg btn-success">Continue </button>
+        <!-- Currently the preview functionality is not working and is ot included in the MVP!-->
         <!--<button id="preview" class="btn btn-lg btn-primary">Preview</button> !-->
-</form>
-
-<!--<h2>Preview of Selected Schools</h2>
-      {{> ReactiveDatatable tableData=schoolDataFunction options=schoolOptionObject }} !-->
+    </form>
+    <!--<h2>Preview of Selected Schools</h2>
+    {{> ReactiveDatatable tableData=schoolDataFunction options=schoolOptionObject }} !-->
 </template>
 
 

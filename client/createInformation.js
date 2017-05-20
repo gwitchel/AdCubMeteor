@@ -1,10 +1,12 @@
+// imports collections from Mongo
 import { Template } from 'meteor/templating';
 import { ReactiveVar } from 'meteor/reactive-var';
 import { Roles } from 'meteor/alanning:roles'
+// imports html page
 import './createInformation.html';
-
-
+// allows user to select their school from a datatable containing all of the schools in the dataset
 var selectYourschoolOptionObject ={
+    // school identifying features shown 
     columns: [
         {
             title: 'School Name',
@@ -30,6 +32,7 @@ selectYourSchoolFunction = function(){
         for (var i = 0; i < schools.length; i++) {
             LocalSchools.insert(schools[i]);
         }
+        // returns local schools
         var x = LocalSchools.find().fetch();
         return x;
 }
@@ -44,16 +47,18 @@ Template.createInformation.helpers({
 
 
 Template.createInformation.events({
+    // lets user select an element from the table that represents their school
     'click tbody > tr': function (event) {
         var dataTable = $(event.target).closest('table').DataTable();
         var rowData = dataTable.row(event.currentTarget).data();
         if (!rowData) return; // Won't be data if a placeholder row is clicked
         // Your click handler logic here
         $(event.currentTarget).css('background-color', 'LightGray')
-        Session.set("schoolNameCookie", rowData["schoolName"]);
+        Session.set("schoolNameCookie", rowData["schoolName"]); // sets the current school to the session
     },
-    'submit form': function(){
-        event.preventDefault();
+    'submit form': function(){ // ran when user updates their school information
+        event.preventDefault(); // prevents default
+        // gets variables from html page inputs 
         var schoolName = Session.get("schoolNameCookie");
         var name = $('#name').val();
         var phone = $("#phone").val();
@@ -64,10 +69,10 @@ Template.createInformation.events({
         var charterSchool = $('input[type="checkbox"]').prop("checked")
         var amount = $("#amount").val(); 
         var schoolIsMapped = newSchools.findOne({schoolName: schoolName});
-        if (schoolIsMapped)
+        if (schoolIsMapped) // checks to see if the school is already registered
         {
             window.alert("Sorry, your school is already registered.")
-        } else {
+        } else { // inserts a school into the newSchools database (registered users) containing the information specified about the school creator
               newSchools.insert({
                 name: name,
                 runningAds : [], 

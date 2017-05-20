@@ -1,8 +1,11 @@
+<!-- reviewAdRequests allows users to review and moniter previous requests for ads they have already made!-->
 <template name='reviewAdRequests'>
         <h1 >Review Ad Requests </h1>
         <p id='bar'> </p> 
+        <!-- displays tabe!-->
         {{>DisplayAdsTemplate}}
 </template>
 <template name = 'DisplayAdsTemplate' >
+        <!-- makes table from js!-->
         {{> ReactiveDatatable tableData=reactiveDataFunction1 options=optionsObject1 }}
 </template>

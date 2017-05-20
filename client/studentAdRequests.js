@@ -1,8 +1,9 @@
+// imports collections from Mongo
 import { Template } from 'meteor/templating';
 import { ReactiveVar } from 'meteor/reactive-var';
-
+// imports html page
 import './studentAdRequests.html';
-
+// creates a data table with all of the advertisements targetting the logged in school
 dataTableData = function () {
     var x =  newSchools.find({admin:Meteor.userId()}).fetch(); // or .map()
     var ads = Ads.find().fetch(); 
@@ -17,7 +18,7 @@ dataTableData = function () {
             }
         }
     }
-    return adsTargettingUser;
+    return adsTargettingUser; // returns ads
 
 };
 var optionsObject = {
@@ -27,16 +28,17 @@ var optionsObject = {
     "render" : function ( url, type, data) {
         return '<img style = "max-width:100%; height:auto" src="'+data["image"].url+'"/>';
     }
-    } ],
+} ],
     columns: [
+        // shows desired data to user
     {
         title: 'name',
-        data: 'name', // note: access nested data like this
+        data: 'name', 
         className: 'nameColumn'
     },
     {
         title: 'timeframe',
-        data: 'timeFrame', // note: access nested data like this
+        data: 'timeFrame', 
         className: 'nameColumn'
     },
     {
@@ -49,10 +51,10 @@ var optionsObject = {
     data: 'location',
     className: 'nameColumn'
 },   {
-    title: 'accept',
+    title: 'accept', // allows user to accept an ad offer 
     "data": "_id", 
         "fnCreatedCell": function(nTd, sData, oData, iRow, iCol){
-            $(nTd).html("<a href ='/acceptOffer/"+oData._id+"'>Accept Offer</a>" );
+            $(nTd).html("<a href ='/acceptOffer/"+oData._id+"'>Accept Offer</a>" ); // redirect then to the accpetOrder page to create a reciept
         },
     className: 'nameColumn'
 }
@@ -65,20 +67,10 @@ var optionsObject = {
 
 Template.DisplayAdRequests.helpers({
     displayAds: function(){
-        return Ads.find({createdBy : Meteor.userId() }).fetch();         
+        return Ads.find({createdBy : Meteor.userId() }).fetch();          
     },
     reactiveDataFunction: function () {
         return dataTableData;
     },
     optionsObject: optionsObject
 });
-Template.DisplayAdRequests.events({
-    'click tbody > tr': function (event) {
-        var dataTable = $(event.target).closest('table').DataTable();
-        var rowData = dataTable.row(event.currentTarget).data();
-        if (!rowData) return; // Won't be data if a placeholder row is clicked
-        // Your click handler logic here
-        $(event.currentTarget).css('background-color', '#bada55')
-        Session.set("schoolNameCookie", rowData["schoolName"]);
-    },
-})

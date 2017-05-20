@@ -1,57 +1,64 @@
+<!-- createInformation template shows the datatable which allows user to select their school from the dataset!-->
 <template name="createInformation">
     <h1> HMMMM, it looks like you information hasn't been entered into our database... lets do something about that </h1>
-
     <h2>Select Your School</h2>
     {{> ReactiveDatatable tableData=selectYourSchoolFunction options=selectYourschoolOptionObject }}
     <hr>
-
     {{>enterInfo}}
 </template>
+<!-- Enter info template gives user a form in which to enter their personal info to be linked with the registered school!-->
 <template name="enterInfo">
     <form> 
+        <!-- name !-->
         <div class="form-group">
             <label for="name">Your Name</label>
             <input class="form-control" id="name" placeholder="Enter your full name">
         </div>
+        <!-- phone !-->
         <div class="form-group">
             <label for="phone">Phone</label>
             <input class="form-control" id="phone" placeholder="Enter phone">
         </div>
+        <!-- address !-->
         <div class="form-group">
             <label for="address">Address</label>
             <input class="form-control" id="address" placeholder="Enter address">
         </div>
+        <!-- city !-->
         <div class="form-group">
             <label for="city">City</label>
             <input class="form-control" id="city" placeholder="Enter city">
         </div>
+        <!-- Zip code!-->
         <div class="form-group">
             <label for="zip">Zip</label>
             <input class="form-control" id="zip" placeholder="Enter your zip code">
         </div>
-
-         <fieldset class="form-group">
+        <!-- select whether or not the school is normal or other!-->
+        <fieldset class="form-group">
             <label for="optionsRadios">School Type</label>
             <div class="form-check">
                 <label class="form-check-label">
                     <input type="radio" class="form-check-input" name="optionsRadios" id="schoolType" value="normal" unchecked>
-                            normal school
+                    normal school
                 </label>
                 <br> 
                 <label class="form-check-label">
                     <input type="radio" class="form-check-input" name="optionsRadios" id="schoolType" value="other" unchecked>
-                            other type of school
+                    other type of school
                 </label>
             </div>
         </fieldset>
-        <label> 
+        <!-- whether or not a school is a charter school!-->
+        <label>
             <input type="checkbox" id="charterSchool" class="form-check-lable"> I represent a charter school.
         </label> 
+        <!-- the schools charge of one ad!--> 
         <div class="form-group">
             <label for="amount">the charge of one ad</label>
             <input class="form-control" id="amount" placeholder="$200.00">
         </div>
         <br> <br> <br> 
         <button type="submit" class="btn btn-lg btn-primary"> Submit </button> 
-        </form>  
+    </form>  
 </template>

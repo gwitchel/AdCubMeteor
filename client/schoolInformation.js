@@ -1,11 +1,12 @@
+// imports collections from Mongo
 import { Template } from 'meteor/templating';
 import { ReactiveVar } from 'meteor/reactive-var';
 import { Roles } from 'meteor/alanning:roles'
+// imports html page
 import './main.html';
-var directions = []
+
 Template.schoolInformation.events({
-    
-    'submit form': function(){
+    'submit form': function(){ // occours when users enters their school name into the checkbox
         event.preventDefault();
         //sets the names of the original schools array        
         var name = $("#schoolName").val();
@@ -36,26 +37,26 @@ Template.schoolInformation.events({
             } else {   
                 console.log("your information is already in the server... yay I guess...")                
             }
-        } else {
+        } else { // lets user create their information
               Router.go('/createInformation');
         }
     }
 }) 
 
 Template.schoolInformation.helpers({
-    schoolName: function(){
+    schoolName: function(){ // returns name 
       name = newSchools.findOne({admin: Meteor.userId()}).schoolName;
       return name; 
     },
-    userName: function(){
+    userName: function(){ // returns username
       username = newSchools.findOne({admin: Meteor.userId()}).name;
       return username; 
     },
-    phone: function(){
+    phone: function(){ // returns phone
       phone = newSchools.findOne({admin: Meteor.userId()}).phone;
       return phone; 
     },
-    userid: function(){
+    userid: function(){ // returns ID
       theid = newSchools.findOne({admin: Meteor.userId()})._id;
       return theid; 
     }

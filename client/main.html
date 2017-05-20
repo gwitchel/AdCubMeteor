@@ -1,110 +1,110 @@
 <template name="main">
-    {{>header}}
-    <div class="container" style="margin-top:25px;">
+  <!-- always displays the header!--> 
+  {{>header}}
+  <div class="container" style="margin-top:25px;">
+    <!-- Yields to whatever page if current!--> 
     {{> yield}}
+    <!-- always displays the footer!--> 
     {{>footer}}
-    </div>
+  </div>
 </template>
-
 <template name = "header">
+  <!-- logo !--> 
   <img src ="img/adcub_logo.jpg" width="150px" height="100px" class="pull-left">
-  
   <div class="pull-right " style="padding-right: 200px; padding-top: 80px;" >
+    <!-- displays login buttons!--> 
     {{> loginButtons}}
   </div>
   <div style="padding-top: 70px;">
-  {{#if currentUser}}
-    {{#if isInRole 'advertiser' 'adcub-roles'}}
-      {{>navbarLoggedInAdvertiser}}
-    {{else if isInRole 'school' 'adcub-roles'}}
-      {{>navbarLoggedInSchool}}
-    {{else}}
+    {{#if currentUser}} <!-- if the current user exists !--> 
+      {{#if isInRole 'advertiser' 'adcub-roles'}}<!-- if the current user is an advertiser!--> 
+        {{>navbarLoggedInAdvertiser}}
+      {{else if isInRole 'school' 'adcub-roles'}}<!-- if the current user is a school!--> 
+        {{>navbarLoggedInSchool}}
+      {{else}}
       <!-- Do not display a nav bar -->
+      {{/if}}
+    {{else}}
+      {{>navbarNotLoggedIn}}<!-- display the navbar for perspective clients!--> 
     {{/if}}
-  {{else}}
-   {{>navbarNotLoggedIn}}
-  {{/if}}
   </div>
-
 </template>
-
-<template name = "navbarLoggedInAdvertiser">
-
+<template name = "navbarLoggedInAdvertiser"> <!-- navbar for advertisers!--> 
   <ul class="nav nav-tabs">
-  <li><a href="{{pathFor route='home'}}">Home </a></li>
-  <li><a href="{{pathFor route='createAd'}}">Create Ad </a> </li>   
-  <li> <a href="{{pathFor route='reviewAdRequests'}}">Review Ad Requests </a></li>
-  <li><a href="{{pathFor route='services'}}">Buy Ad Credits </a></li> 
+    <!-- links !--> 
+    <li><a href="{{pathFor route='home'}}">Home </a></li>
+    <li><a href="{{pathFor route='createAd'}}">Create Ad </a> </li>   
+    <li> <a href="{{pathFor route='reviewAdRequests'}}">Review Ad Requests </a></li>
+    <li><a href="{{pathFor route='services'}}">Buy Ad Credits </a></li> 
   </ul>
 </template>
-
-<template name = "navbarLoggedInSchool">
+<template name = "navbarLoggedInSchool"> <!-- navbar for schools !--> 
   <ul class="nav nav-tabs">
-  <li><a href="{{pathFor route='home'}}">Home </a></li>
-  <li><a href="{{pathFor route='studentAdRequests'}}">Advertising Requests</a> </li>   
-  <li> <a href="{{pathFor route='schoolInformation'}}">My School</a></li>
+    <!-- links!--> 
+    <li><a href="{{pathFor route='home'}}">Home </a></li>
+    <li><a href="{{pathFor route='studentAdRequests'}}">Advertising Requests</a> </li>   
+    <li> <a href="{{pathFor route='schoolInformation'}}">My School</a></li>
   </ul>
 </template>
-
-<template name = "navbarNotLoggedIn">
- 
+<template name = "navbarNotLoggedIn"> <!-- navbar for non users or users not logged in!--> 
   <ul class="nav nav-tabs">
-  <li><a href="{{pathFor route='home'}}">Home</a> </li>
-  <li><a href="{{pathFor route='aboutUs'}}">About Us</a> </li>
-  <li><a href="{{pathFor route='howItWorks'}}">How It Works</a></li>
+    <!-- links !--> 
+    <li><a href="{{pathFor route='home'}}">Home</a> </li>
+    <li><a href="{{pathFor route='aboutUs'}}">About Us</a> </li>
+    <li><a href="{{pathFor route='howItWorks'}}">How It Works</a></li>
   </ul>
 </template> 
-
 <template name = "home">
   <h1>Welcome</h1>
-      {{#if isInRole 'advertiser' 'adcub-roles'}}
-        <div class="panel panel-info">
-          <div class="panel-heading">
-                  <h3 class="panel-title">Getting Started</h3>
-          </div>
-          <div class="panel-body">To get started you need to buy some ad credits and then place an ad.</div>
-        </div>
-        <h3>Dashboard</h3>
-        <div class="well label-group">
-          <div><span class="label label-success">Available Advertiser Credits</span> <span class="label label-default">{{ displayCredits }}</span></div>
-          <div><span class="label label-success">Open Ad Count</span> <span class="label label-default">{{ displayAdCount }}</span></div>
-        </div>
-        <div class="well">
-          <p> You are an advertiser. This means you pay to place your created and chosen advertisements in schools of your choice. The advertisements you create will be used in the schools that match the information you desire for a school. The characteristics you select will choose the schools that file within those selections, and the advertisements will go into place. </p>
-        </div>
-    {{else if isInRole 'school' 'adcub-roles'}}
-        <div class="panel panel-info">
-        <div class="panel-heading">
-                <h3 class="panel-title">Getting Started</h3>
-        </div>
-        <div class="panel-body">To get started you need to find an advertiser in your community or wait until
-          an advertiser places an ad your school qualifies for.</div>
+  {{#if isInRole 'advertiser' 'adcub-roles'}} <!-- if the user is an advertiser!--> 
+    <div class="panel panel-info">
+      <div class="panel-heading">
+        <h3 class="panel-title">Getting Started</h3>
       </div>
-      <h3>Dashboard</h3>
-      <div class="well label-group">
-        <h4>
+      <div class="panel-body">To get started you need to buy some ad credits and then place an ad.</div>
+    </div>
+    <h3>Dashboard</h3>
+    <div class="well label-group">
+      <div><span class="label label-success">Available Advertiser Credits</span> <span class="label label-default">{{ displayCredits }}</span></div>
+      <div><span class="label label-success">Open Ad Count</span> <span class="label label-default">{{ displayAdCount }}</span></div>
+    </div>
+    <div class="well">
+      <p> You are an advertiser. This means you pay to place your created and chosen advertisements in schools of your choice. The advertisements you create will be used in the schools that match the information you desire for a school. The characteristics you select will choose the schools that file within those selections, and the advertisements will go into place. </p>
+    </div>
+  {{else if isInRole 'school' 'adcub-roles'}} <!-- if user is a school !--> 
+    <div class="panel panel-info">
+      <div class="panel-heading">
+        <h3 class="panel-title">Getting Started</h3>
+      </div>
+      <div class="panel-body">
+        To get started you need to find an advertiser in your community or wait until
+        an advertiser places an ad your school qualifies for.
+      </div>
+    </div>
+    <h3>Dashboard</h3>
+    <div class="well label-group">
+      <h4>
         <div><span class="label label-success">School Credits</span> <span class="label label-default">{{ displayCredits }}</span></div> <br> 
         <div><span class="label label-success">My School</span> <span class="label label-default">{{ displaySchool }}</span></div><br> 
         <div><span class="label label-success">Ad Cost</span> <span class="label label-default">{{ costOfAd }}</span></div>
-        </h4> 
-      </div>
-      <div class="well">
-          <p> Being a school in this process, the characteristics of your school are already filed through businessess requests. The businesses that want to advertise in your school will show, and the money the school will gain from those selcted advertisements. Viewing is completly optional. From there, allowing or declining the request is necessary.</p>
-        </div>
-    {{ else if currentUser}}
-    <!--Logged in with no role-->
-      {{>selectRole}}
-    {{ else }}
-      {{ >WelcomeNotLoggedIn }}
-    {{/if}}
+      </h4> 
+    </div>
+    <div class="well">
+      <p> Being a school in this process, the characteristics of your school are already filed through businessess requests. The businesses that want to advertise in your school will show, and the money the school will gain from those selcted advertisements. Viewing is completly optional. From there, allowing or declining the request is necessary.</p>
+    </div>
+  {{ else if currentUser}} 
+  <!--Logged in with no role-->
+    {{>selectRole}} 
+  {{ else }} <!-- user is not logged in!--> 
+    {{ >WelcomeNotLoggedIn }}
+  {{/if}}
 </template>
-
-<template name="WelcomeNotLoggedIn">
-  <div class="well">AdCub is a great place to bring advertisers and schools together! To get started, click on the "Sign in" on the upper right and click Create Account.</div>
+<template name="WelcomeNotLoggedIn"> <!-- potential client descriptions and pages!--> 
+  <div class="well">
+    AdCub is a great place to bring advertisers and schools together! To get started, click on the "Sign in" on the upper right and click Create Account.
+  </div>
 </template>
-
-<template name = "aboutUs">
-  
+<template name = "aboutUs"> <!--about us !--> 
   <div class="panel panel-success">
     <div class="panel-heading">
       <h1 class="panel-title">who we are</h1>
@@ -130,18 +130,30 @@
     </div>
   </div>
 </template>
-<template name = "footer">
-
-  <p style="padding-top:100px;"> adCub corp. april 2017 </p> 
+<template name = "howItWorks"> <!-- how it works!--> 
+  <div class="panel panel-success">
+    <div class="panel-heading">
+      Welcome to adCub 
+    </div>
+    <div class="panel-body">
+      <p> Adcub is a platform for product discovery. One of the largest untapped demographics for advertising is highschoolers. Adcub solves that problem by allowing companies to mass place ads directly in highschools across america. We currently have {{userSchools}} registered schools, and {{userAds}} currently pending ad request</p>
+    </div> 
+  </div>
+  <div class="panel panel-info">
+    <div class="panel-heading">
+      The flow
+    </div>
+    <div class="panel-body">
+      <ol> 
+      <li> An advertiser uses our ad selecting platform to place an ad request</li> 
+      <li> that ad request is then sent to all registered school that fit the demographic </li> 
+      <li> All registered schools have an account they can log into in order to view ad requests </li> 
+      <li> If a school aggess to accept and ad request their given charge is withdrawn from the advertisers account and suspended until the placement is verified </li>
+      <li> Once the school has placed the ad a verification picture is sent to the advertiser, and upon verificatio that the ad was actually place the fund are then transsfered to the schools account </li> 
+      </ol>
+    </div>
+  </div>
 </template>
-<template name = "howItWorks">
-  <p> Adcub is a platform for product discovery. One of the largest untapped demographics for advertising is highschoolers. Adcub solves that problem by allowing companies to mass place ads directly in highschools across america. We currently have {{userSchools}} registered schools, and {{userAds}} currently pending ad request</p>
-  <h1> the flow </h1> 
-  <ol> 
-    <li> An advertiser uses our ad selecting platform to place an ad request</li> 
-    <li> that ad request is then sent to all registered school that fit the demographic </li> 
-    <li> All registered schools have an account they can log into in order to view ad requests </li> 
-    <li> If a school aggess to accept and ad request their given charge is withdrawn from the advertisers account and suspended until the placement is verified </li>
-    <li> Once the school has placed the ad a verification picture is sent to the advertiser, and upon verificatio that the ad was actually place the fund are then transsfered to the schools account </li> 
-  </ol>
+<template name = "footer">
+  <p style="padding-top:100px;"> adCub corp. april 2017 </p> 
 </template>

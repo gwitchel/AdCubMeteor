@@ -1,3 +1,4 @@
+<!-- Select role is displayed when the user is loggen in but they have no current role!--> 
 <template name="selectRole">
     <div class="alert alert-info" role="alert">
         Before you continue to your homepage please specify whether you are an advertiser or a school.
@@ -6,11 +7,13 @@
         <fieldset class="form-group">
             <div class="form-check">
                 <label class="form-check-label">
+                    <!-- User is a school!--> 
                     <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios1" value="school" unchecked>
                             I represent a school.
                 </label>
                 <br> 
                 <label class="form-check-label">
+                    <!-- user is an advertiser!--> 
                     <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios2" value="advertiser" unchecked>
                             I represent an advertiser.
                 </label>
@@ -20,15 +23,6 @@
     
     </form>
     <br>
-    {{#if isInRole 'advertiser' 'adcub-roles'}}
-        {{>advertiserInfo}}
-    {{/if}}
-    {{#if isInRole 'school' 'adcub-roles'}}
-        {{>schoolInfo}}
-    {{/if}}
 </template>
 
-<template name="schoolInfo">
-   <h1> Your already registered as a school </h1>
-</template>
 

@@ -1,27 +1,24 @@
+<!-- Allows for the user to view and update their information (schools only) !--> 
 <template name="schoolInformation">
-        <h3> My current information </h3>
-        <div class="well">
+    <h3> My current information </h3>
+    <div class="well">
         <h4> 
+            <!-- displays information about the users current registered school!--> 
             <span class="label label-warning">my current School</span> <span class="label label-info">{{ schoolName }}</span><br><br>
             <span class="label label-warning">my name</span> <span class="label label-info">{{ userName }}</span><br><br>
             <span class="label label-warning">point of contact</span> <span class="label label-info">{{ phone }}</span><br><br>
             <span class="label label-warning">ID</span> <span class="label label-info">{{ userid }}</span>
         </h4>
-        </div> 
-        <h2> not right? </h2>
-        <div class="well">
+    </div> 
+    <h2> not right? </h2>
+    <div class="well">
         <p> enter your school name below to update your information </p>
         {{>noInfo}}
-        </div>
-
-</template> 
-
-<template name="infoFound">
-    <h1> we found you in our database!</h1>
-    <h3> not right? name some changes... </h3>
+    </div>
 </template> 
 <template name="noInfo">
     <form> 
+        <!-- user can search for their name !--> 
         <input placeholder="school name" id="schoolName" >
         <button type = "submit" class="btn btn-sm btn-primary"> Submit </button>
     </form> 

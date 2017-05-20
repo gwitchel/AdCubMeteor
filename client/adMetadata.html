@@ -1,3 +1,4 @@
+<!-- adMetadata template allows the advertiser to !-->
 <template name="adMetadata">
     <form> 
         <br> 
@@ -5,10 +6,11 @@
             <strong>Great! </strong>  
             We're just about ready to place your ad request, but before we do, we need a little bit more information about what you want.
         </div> 
+        <!-- name !-->
         <label for="name"> Your ad's name </label>
         <input placeholder="my cool name" id="name">
         <p> The title of every ad is used to let users easily be able to skim requests </p> 
-       
+       <!-- Placement dates!-->
        <div style="width: 33%">
         <label for="startDate" class="col-2 col-form-label"> Start date </label>
         <input class="form-control" type="date" value="2011-08-19" id="startDate">
@@ -16,18 +18,21 @@
         <input class="form-control" type="date" value="2011-08-19" id="endDate">
        </div>
         <p> Your ad can only be run during the timeframe specified </p> 
-
+        <!-- max price for each school !-->
         <label for="name"> The max price per school </label>
         <input placeholder="$" id="adPrice">
         <p> Your ad request will be sent to multiple schools, this is the maximum price paid per school.</p> 
         <br> 
+        <!-- advertisers budget!-->
         <label for="totalAmount"> Total budget </label>
         <input placeholder="$" id="totalAmount">
         <p> How much you are willing to spend across all schools? </p> 
         <br>
+        <!-- Where the advertiser wants the ad to be displayed!-->
         <label for="location">The location of your ad</label>
         <textarea style="width: 33%" class="form-control" id="location" rows="3" placeholder="Please provide a brief description of where and how you would like the schools to showcase your ad"></textarea>
         <br>
+        <!-- Advertisers email!-->
         <label for="email"> Your email </label> 
         <input type="email"  id="email" placeholder="you@example.com">
         <br> <br> 

@@ -1,17 +1,19 @@
+// imports collections from Mongo
 import { Template } from 'meteor/templating';
 import { ReactiveVar } from 'meteor/reactive-var';
 import { Roles } from 'meteor/alanning:roles'
+// imports html page
 import './schoolAcceptOrder.html';
 
-Template.schoolAcceptOrder.rendered = function(){
+Template.schoolAcceptOrder.rendered = function(){ //when the page is first loaded
     if(!this._rendered){
-        this._rendered = true; 
-        var currentAd = Ads.findOne({_id: Router.current().params._id})
-        var currentSchool = newSchools.findOne({admin: Meteor.userId()})
-        var amount = currentSchool.amount;
-        var orderDate = new Date(); 
-        var createdBy = Meteor.userId(); 
-        console.log("template onload" );
+        this._rendered = true;
+        var currentAd = Ads.findOne({_id: Router.current().params._id}) // finds current ad
+        var currentSchool = newSchools.findOne({admin: Meteor.userId()}) // finds current school
+        var amount = currentSchool.amount; // schools charge 
+        var orderDate = new Date();  // date accepted 
+        var createdBy = Meteor.userId(); // who accepted the ad 
+       // creates a reciept for the order by adding the info to the InsertionOrder collection
         InsertionOrder.insert({
             ad : currentAd,
             school: currentSchool, 
@@ -22,9 +24,9 @@ Template.schoolAcceptOrder.rendered = function(){
         var advertiserCredit = Credits.findOne({user : currentAd.createdBy});
         var schoolCredit = Credits.findOne({user : currentSchool.admin});
         Credits.update({ _id: advertiserCredit._id }, { $set: {amount: (advertiserCredit.amount - amount)} });
-        if(schoolCredit){
+        if(schoolCredit){ // if the school as an account for credits update it
         Credits.update({ _id: schoolCredit._id }, { $set: {amount: (schoolCredit.amount + amount )} });
-        } else{
+        } else{ // otherwise make the school an account
             Credits.insert({
                  user: Meteor.userId(),
                  amount: amount,
@@ -32,13 +34,5 @@ Template.schoolAcceptOrder.rendered = function(){
             })
             
         }
-        var school  = newSchools.findOne({admin: Meteor.userId()})
-        var adsCurrentRunning = currentAd.schoolsRunning
-        adsCurrentRunning.push(currentAd)
-        var schoolCurrentRunning = school.runningAds
-        schoolCurrentRunning.push(Meteor.userId())
-        newSchools.update({ _id: school._id }, { $set: {runningAds: adsCurrentRunning}});
-        Ads.update({ _id: currentAd._id }, { $set: {schoolsRunning: schoolCurrentRunning}});
-        Credits.update({ _id: advertiserCredit._id }, { $set: {charges:{ school : school.schoolName}} });
     }
 }

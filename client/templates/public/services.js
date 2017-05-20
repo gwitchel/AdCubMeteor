@@ -1,15 +1,16 @@
+// runs on template created
 Template.services.onCreated( () => {
   let template = Template.instance();
-
   template.selectedService  = new ReactiveVar( false );
   template.processing       = new ReactiveVar( false );
-
+// runs when user clicks checkout
   template.checkout = StripeCheckout.configure({
+    // all adCub payments go through the stripe payment system. Stripe is PCI DSS compliant ad has SSL and data encryption 
     key: Meteor.settings.public.stripe,
-   // image: 'https://tmc-post-content.s3.amazonaws.com/ghostbusters-logo.png',
     locale: 'auto',
     token( token ) {
       let service = template.selectedService.get(),
+          // set charge
           charge  = {
             amount: token.amount || service.amount,
             currency: token.currency || 'usd',
@@ -21,15 +22,15 @@ Template.services.onCreated( () => {
       Meteor.call( 'processPayment', charge, ( error, response ) => {
         if ( error ) {
           template.processing.set( false );
-          window.alert( error.reason, 'danger' );
+          window.alert( error.reason, 'danger' ); // alert if there is an error with the payments
         } else {
-          Meteor.call('buyCredit', charge.amount);
-          window.alert( 'Thanks!', 'success' );
+          Meteor.call('buyCredit', charge.amount); // charges the account
+          window.alert( 'Thanks!', 'success' ); // alerts user of success
         }
       });
     },
     closed() {
-      template.processing.set( false );
+      template.processing.set( false ); // the template is no longer processing
     }
   });
 });
@@ -44,6 +45,7 @@ Template.services.helpers({
 });
 
 Template.services.events({
+  // sets evens on the click of each purchese option
   'click [data-service]' ( event, template ) {
     const pricing = {
       'small-package': {
@@ -62,10 +64,10 @@ Template.services.events({
 
     let service = pricing[ event.target.dataset.service ];
 
-    template.selectedService.set( service );
+    template.selectedService.set( service ); // sets the selected services
     template.processing.set( true );
 
-    template.checkout.open({
+    template.checkout.open({ // checkout
       name: 'adCub credit purchase',
       description: service.description,
       amount: service.amount,

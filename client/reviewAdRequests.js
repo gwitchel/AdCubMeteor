@@ -1,10 +1,12 @@
+// imports collections from Mongo
 import { Template } from 'meteor/templating';
 import { ReactiveVar } from 'meteor/reactive-var';
-
+// imports html page
 import './reviewAdRequests.html';
 
+// gets information and formatting for the table containing the information about  ad requests the user has made
 dataTableData1 = function () {
-    var x=  Ads.find({createdBy : Meteor.userId() }).fetch(); // or .map()
+    var x=  Ads.find({createdBy : Meteor.userId() }).fetch(); // gets ads
     return x;
 };
 
@@ -13,7 +15,7 @@ var optionsObject1 = {
     "targets" : 3 ,
     "data": "img",
     "render" : function ( url, type, data) {
-        return '<img style = "max-width:100%; height:auto" src="'+data["image"].url+'"/>';
+        return '<img style = "max-width:100%; height:auto" src="'+data["image"].url+'"/>'; //renders image
     }
     },
 
@@ -36,6 +38,7 @@ var optionsObject1 = {
 
  ],
     columns: [
+    // gives  information about ads
     {
         title: 'ID',
         data: '_id', // note: access nested data like this
@@ -58,10 +61,10 @@ var optionsObject1 = {
 
 Template.DisplayAdsTemplate.helpers({
     displayAds: function(){
-        return Ads.find({createdBy : Meteor.userId() }).fetch();         
+        return Ads.find({createdBy : Meteor.userId() }).fetch();  // returns ads        
     },
     reactiveDataFunction1: function () {
-        return dataTableData1;
+        return dataTableData1; // returns datatable
     },
     optionsObject1: optionsObject1
 });

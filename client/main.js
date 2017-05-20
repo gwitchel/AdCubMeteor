@@ -1,6 +1,8 @@
+// imports collections from Mongo
 import { Template } from 'meteor/templating';
 import { ReactiveVar } from 'meteor/reactive-var';
 import { Roles } from 'meteor/alanning:roles'
+// imports html page
 import './main.html';
 
 // Callback after the file is uploaded
@@ -9,7 +11,7 @@ Meteor.startup(function() {
     // Uploads.insert(fileInfo);
     console.log(fileInfo);
     var curr = Session.get("currentAd")
-    Ads.update({ _id: curr }, { $set: {image: fileInfo} });
+    Ads.update({ _id: curr }, { $set: {image: fileInfo} }); // update current ad with file info
   }
   Hooks.init();
 }
@@ -17,12 +19,13 @@ Meteor.startup(function() {
 
 Template.uploadImage.events({
   'submit form': function(){
+      // redirect to the next step
       event.preventDefault();
       Router.go("/adMetadata")
   }
 })
 
-// Admin screen.  You may need to create the jwitchel and gwitchel emails
+// Admin screen
 // https://atmospherejs.com/yogiben/admin
 AdminConfig = {
   name: 'AdCub',
@@ -45,10 +48,12 @@ AdminConfig = {
    }
 
 Template.home.helpers({
+  // returns how much the school charges for an ad
     costOfAd: function(){
       cost = newSchools.findOne({admin: Meteor.userId()}).amount;
       return '$' + (cost/100).toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
     },
+  // returns the number of ads an advertiser is currently running
     displayAdCount: function(){
       count = Ads.find({createdBy: Meteor.userId()}).count();
       if (count > 0){
@@ -68,24 +73,26 @@ Template.home.helpers({
         return "$ 0.00"
       };
     },
-
+    // returns the name of the school related with the user
     displaySchool: function(){
       return newSchools.findOne({admin: Meteor.userId()}).schoolName;
     }
 });
 
 Template.howItWorks.helpers({
+  // returns the number of registered school in newSchools
   userSchools: function(){
     var schools = newSchools.find().fetch().length; 
     return schools;
   },
+  // returns the number of total ad requests
    userAds: function(){
     var ads = Ads.find().fetch().length; 
     return ads;
   }
 })
 
-
+// Routes
 Router.configure({
   name: 'main', 
   layoutTemplate: 'main'
